@@ -1,0 +1,150 @@
+/* Global styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7fafc;
+  color: #2d3748;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header (optional) */
+header {
+  background-color: #3182ce;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Main container */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Title and Section Headings */
+h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #2c5282;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #2b6cb0;
+  margin: 32px 0 12px;
+  border-bottom: 2px solid #bee3f8;
+  padding-bottom: 4px;
+}
+
+/* Paragraph and Text */
+p {
+  font-size: 1rem;
+  color: #4a5568;
+  margin-bottom: 12px;
+}
+
+strong {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Image Styling */
+.image-container img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* List Styles */
+ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* Alert Styling */
+.alert {
+  background-color: #fed7d7;
+  color: #c53030;
+  border-left: 6px solid #e53e3e;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 20px 0;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(229, 62, 62, 0.1);
+}
+
+/* Weather Block */
+.weather-block {
+  background-color: #ebf8ff;
+  border-left: 6px solid #3182ce;
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* Rating Display */
+.rating {
+  font-size: 1rem;
+  color: #ed8936;
+  font-weight: bold;
+}
+
+/* Footer Text */
+.footer {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 40px;
+  color: #718096;
+}
+
+/* Links */
+a {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: 1rem;
+  color: #3182ce;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+}

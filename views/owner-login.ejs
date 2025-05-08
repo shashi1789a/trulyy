@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 font-sans text-gray-800">
+    <%- include('./partials/headeroth') %>
+
+    <div class="max-w-4xl mx-auto px-4 py-10">
+      <h2 class="text-3xl font-bold mb-8 text-center">My Account</h2>
+
+      <div class="bg-white p-6 rounded-xl shadow-md">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Account Information</h3>
+            <p><span class="font-semibold">Name:</span> <%= user.fullname %></p>
+            <p><span class="font-semibold">Email:</span> <%= user.email %></p>
+            <p><span class="font-semibold">Contact:</span> <%= user.contact %></p>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Profile Picture</h3>
+            <% if (user.picture) { %>
+              <img src="<%= user.picture %>" alt="Profile" class="w-32 h-32 rounded-full object-cover border-2 border-gray-300" />
+            <% } else { %>
+              <div class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                No Image
+              </div>
+            <% } %>
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <h3 class="text-xl font-semibold mb-4">My Orders</h3>
+          <% if (user.orders.length === 0) { %>
+            <p class="text-gray-600">You have no orders yet.</p>
+          <% } else { %>
+            <ul class="space-y-4">
+              <% user.orders.forEach((order, index) => { %>
+                <li class="bg-gray-50 p-4 rounded-lg border">
+                  <p><span class="font-semibold">Order #<%= index + 1 %>:</span> <%= order %></p>
+                </li>
+              <% }) %>
+            </ul>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <%- include('./partials/footer') %>
+  </body>
+</html>

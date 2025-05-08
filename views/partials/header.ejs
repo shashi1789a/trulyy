@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Header</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" href="/stylesheet/shop.css"> -->
+    <link rel="stylesheet" href="/stylesheet/style.css">
+</head>
+<!-- <body class="bg-gray-100">  -->
+    <body>
+        <div class="body">
+    <!-- <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                Logo  -->
+                <!-- <h2 class="text-2xl font-bold text-gray-800"></h2> -->
+                
+                <!-- Menu Links -->
+                <!-- <% var loggedin = typeof loggedin !== "undefined" ? loggedin : true %>
+                <% if (loggedin) { %>
+                <div class="hidden md:flex space-x-6">
+                    <a href="/shop" class="text-gray-600 hover:text-gray-900">Shop</a>
+                    <a href="/cart" class="text-gray-600 hover:text-gray-900">Favourate</a>
+                    <a href="owner-login" class="text-gray-600 hover:text-gray-900">My Account</a>
+                    <a href="/users/Logout" class="text-red-500 hover:text-red-700">Logout</a>
+                    
+                </div>
+
+                 Mobile Menu Button 
+                <button id="menu-btn" class="md:hidden focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <% } %>
+            </div> 
+        
+                
+             </div> -->
+
+            <button id="menu-btn" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button> 
+           
+            <div class="bodymain">
+                <header>
+                   <div class="icon1"> <div class="i"><i class="fa-solid fa-phone"></i></div> Further Inquires:<br>+01 (123)4567 90</div>
+                   <div class="icon2"> <i class="fa-solid fa-plane-departure"></i>  TOURLY</div>
+                <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    
+                </header>
+                <hr>
+                <nav><div class="navi">
+                    <div class="i1">
+                        <i class="fa-brands fa-facebook"></i></div>
+                        <div class="i1">
+                    <i class="fa-brands fa-twitter"></i> </div>
+                <div class="i1">
+                    <i class="fa-brands fa-youtube"></i>   </i></div>
+                </div>
+                <% var loggedin = typeof loggedin !== "undefined" ? loggedin : true %>
+            <% if (loggedin) { %>
+                <div class="hidden md:flex space-x-6">
+                <div class="ul">
+
+                    <ul>
+                        <li><a href="/shop" >Home</a></li>
+                        <li> <a href="/cart" >Add to Trip</a></li>
+                        <li> <a href="owner-login" >My Account</a></li>
+                        <li><a href="/users/Logout">Logout</a></li>
+               <li> <a href="/aboutus">about us</a></li>
+               <li> <a href="/destination">destination</a></li>
+               <li> <a href="/galery">gallery</a></li>
+               <li> <a href="/contactus">contact us</a></ul></li>
+            </div></div>
+                <button>book now</button>
+
+        </div>
+
+
+
+
+
+            <% } %>
+        
+
+            <!-- Mobile Menu -->
+            <% if (loggedin) { %>
+            <div id="mobile-menu" class="hidden md:hidden flex flex-col space-y-4 py-2 bg-white shadow-md">
+                <a href="/shop.ejs" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Shop</a>
+                <a href="/cart" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Cart</a>
+                <a href="/owner-login" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">My Account</a>
+                <a href="/users/Logout" class="block px-4 py-2 text-red-500 hover:bg-gray-100">Logout</a>
+                <li> <a href="/aboutus" class="block px-4 py-2 text-red-500 hover:bg-gray-100">about us</a></li>
+                <li> <a href="/destination " class="block px-4 py-2 text-red-500 hover:bg-gray-100">destination</a></li>
+                <li> <a href="/galery" class="block px-4 py-2 text-red-500 hover:bg-gray-100">gallery</a></li>
+                <li> <a href="/contactus" class="block px-4 py-2 text-red-500 hover:bg-gray-100">contact us</a></ul></li>
+            </div>
+            <% } %>
+        </div>
+        
+    </nav>
+    
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

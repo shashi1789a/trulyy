@@ -1,0 +1,161 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bodymain {
+  height: 100%;
+  width: 100%;
+
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  height: auto;
+  /* background-color: #003049; */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+/* Contact info */
+.icon1 {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.icon1 .i {
+  background-color: rgb(63, 63, 253);
+  color: white;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo section */
+.icon2 {
+  font-size: 1.7em;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon2 i {
+  font-size: 22px;
+}
+
+/* Search icon */
+.icon {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Divider under header */
+hr {
+  margin-top: 70px; /* Compensate for fixed header */
+  height: 1px;
+  background-color: gray;
+  border: none;
+}
+
+/* NAVIGATION BAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 40px;
+  color: white;
+  font-size: 1em;
+}
+
+/* Social Icons */
+.navi {
+  display: flex;
+  gap: 15px;
+}
+
+.i1 {
+  padding: 6px;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+}
+
+/* Navigation links */
+.ul ul {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.ul ul li a {
+  text-decoration: none;
+  color: white;
+  margin: 0 12px;
+  transition: color 0.3s;
+}
+
+.ul ul li a:hover {
+  color: #ccc;
+}
+
+/* Book Now Button */
+nav button {
+  height: 35px;
+  width: 130px;
+  background-color: rgb(91, 91, 240);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+  background-color: rgb(66, 66, 230);
+}
+
+/* Responsive Fixes */
+@media screen and (max-width: 768px) {
+  header, nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ul ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav {
+    gap: 15px;
+  }
+
+  .navi {
+    margin: 10px 0;
+  }
+}

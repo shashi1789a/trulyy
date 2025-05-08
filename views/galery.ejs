@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery & Blog - Travel & Tourism</title>
+  <link rel="stylesheet" href="/stylesheet/galery.css" />
+</head>
+<body>
+
+    <%- include('./partials/headeroth') %>
+    
+      <!-- GALLERY SECTION -->
+      <section class="section">
+        <h2 class="section-title">Travel Gallery</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item"><img src="/image/sonu1.jpg" alt="Beach"></div>
+          <div class="gallery-item"><img src="/image/sumit2.jpg" alt="Waterfall"></div>
+          <div class="gallery-item"><video controls autoplay muted src="https://www.w3schools.com/html/movie.mp4"></video></div>
+          <div class="gallery-item"><img src="/image/sumit1.jpg" alt="Temple"></div>
+          <div class="gallery-item"><video controls autoplay muted src="/image/smv.mp4"></video>
+          </div>
+          <div class="gallery-item"><img src="/image/sonu4.jpg" alt="Mountain"></div>
+        </div>
+      </section>
+    
+      <!-- BLOG SECTION -->
+      <section class="section blog">
+        <h2 class="section-title">Travel Stories</h2>
+    
+        <div class="blog-post">
+          <div class="blog-media">
+            <img src="/image/sonu3.jpg" alt="Temple Blog">
+          </div>
+          <div class="blog-content">
+            <h3>Unveiling Ancient Temples of India</h3>
+            <p>Journey through time as you explore the ancient and majestic temples that stand as architectural marvels of India.</p>
+            <video  controls autoplay muted src="/image/clim.mp4"></video>
+          </div>
+        </div>
+    
+
+
+        <div class="blog-post">
+          <div class="blog-media">
+            <img src="/image/sssnn.jpg" alt="Temple Blog">
+          </div>
+          <div class="blog-content">
+            <h3>Unveiling Ancient Temples of India</h3>
+            <p>Journey through time as you explore the ancient and majestic temples that stand as architectural marvels of India.</p>
+            <video  controls autoplay muted src="/image/artv.mp4"></video>
+          </div>
+        </div>
+        <div class="blog-post reverse">
+          <div class="blog-media">
+            <video controls autoplay muted src="/image/smv2.mp4"></video>
+          </div>
+          <div class="blog-content">
+            <h3>Top 5 Waterfalls for Nature Lovers</h3>
+            <p>Experience the serene beauty of India’s most breathtaking waterfalls, hidden within lush forests and hills.</p>
+            <img src="/image/sonu2.jpg" alt="Waterfall Blog">
+          </div>
+        </div>
+      </section>
+      <%- include('./partials/footer') %>
+    
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    
+</body>
+</html>

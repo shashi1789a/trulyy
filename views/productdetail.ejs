@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= product.name %> - Details</title>
+  <link rel="stylesheet" href="/stylesheet/placedetail.css"> <!-- Optional CSS file -->
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    img { max-width: 100%; border-radius: 8px; }
+    h1, h2 { margin-top: 20px; }
+    ul { padding-left: 20px; }
+    .alert { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <%- include('./partials/headeroth') %>
+  <header>
+    <h1>Enroll Place</h1>
+  </header>
+ 
+  <div class="container">
+    <div class="image-container">
+      <% if (product.image) { %>
+        <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="<%= product.name %>">
+      <% } %>
+    </div>
+  
+    <div class="details">
+      <h1><%= product.name %></h1>
+      <p><strong>Category:</strong> <%= product.category %></p>
+      <p><strong>Description:</strong> <%= product.description %></p>
+  
+      <div class="section">
+        <h2>Location</h2>
+        <p><strong>Address:</strong> <%= product.location?.address %></p>
+        <p><strong>City:</strong> <%= product.location?.city %></p>
+        <p><strong>State:</strong> <%= product.location?.state %></p>
+        <p><strong>Country:</strong> <%= product.location?.country %></p>
+        <p><strong>Coordinates:</strong> 
+          Lat: <%= product.location?.coordinates?.lat %>, 
+          Lng: <%= product.location?.coordinates?.lng %>
+        </p>
+      </div>
+  
+      <div class="section">
+        <h2>Entry Fee</h2>
+        <p><%= product.entryFee ?? 'Free' %> ₹</p>
+      </div>
+  
+      <div class="section">
+        <h2>Opening Hours</h2>
+        <p><strong>Open:</strong> <%= product.openingHours?.open ?? 'N/A' %> | 
+           <strong>Close:</strong> <%= product.openingHours?.close ?? 'N/A' %></p>
+      </div>
+  
+      <div class="section">
+        <h2>Nearby Transport</h2>
+        <ul>
+          <% (product.nearbyTransport || []).forEach((item) => { %>
+            <li>
+              <strong>Type:</strong> <%= item.type %> |
+              <strong>Description:</strong> <%= item.description %> |
+              <strong>Distance:</strong> <%= item.distanceKm %> km
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+  
+      <div class="section">
+        <h2>Nearby Hotels</h2>
+        <ul>
+          <% (product.nearbyHotels || []).forEach((hotel) => { %>
+            <li>
+              <strong>Name:</strong> <%= hotel.name %><br>
+              <strong>Address:</strong> <%= hotel.address %><br>
+              <strong>Contact:</strong> <%= hotel.contact %><br>
+              <strong>Coordinates:</strong> 
+              Lat: <%= hotel.coordinates?.lat %>, 
+              Lng: <%= hotel.coordinates?.lng %>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+  
+      <div class="section">
+        <h2>Nearby Restaurants</h2>
+        <ul>
+          <% (product.nearbyRestaurants || []).forEach((res) => { %>
+            <li>
+              <strong>Name:</strong> <%= res.name %><br>
+              <strong>Address:</strong> <%= res.address %><br>
+              <strong>Contact:</strong> <%= res.contact %><br>
+              <strong>Coordinates:</strong> 
+              Lat: <%= res.coordinates?.lat %>, 
+              Lng: <%= res.coordinates?.lng %>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+  
+      <div class="section">
+        <h2>Weather Info</h2>
+        <p><strong>Temperature:</strong> <%= product.weatherInfo?.temperature ?? 'N/A' %>°C</p>
+        <p><strong>Condition:</strong> <%= product.weatherInfo?.condition ?? 'N/A' %></p>
+        <p><strong>Last Updated:</strong> <%= product.weatherInfo?.lastUpdated ? product.weatherInfo.lastUpdated.toLocaleString() : 'Not available' %></p>
+      </div>
+  
+      <% if (product.tsunamiAlert?.active) { %>
+        <div class="section alert" style="color: red; font-weight: bold;">
+          ⚠️ <strong>Tsunami Alert:</strong> <%= product.tsunamiAlert.message %><br>
+          <strong>Issued At:</strong> <%= product.tsunamiAlert.issuedAt?.toLocaleString() %>
+        </div>
+      <% } %>
+  
+      <div class="section">
+        <h2>Rating</h2>
+        <p class="rating">
+          <%= product.rating?.average ?? '0' %> / 5 
+          (based on <%= product.rating?.count ?? 0 %> reviews)
+        </p>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <!-- albom -->
+  <%- include('./partials/albom') %>
+
+  <%- include('./partials/footer') %>
+</body>
+</html>

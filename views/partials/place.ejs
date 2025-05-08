@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explore Places</title>
+  <link rel="stylesheet" href="/stylesheet/place.css" />
+</head>
+<body>
+  <section class="places">
+    <div class="container">
+      <h1 class="text-4xl font-bold text-center my-10 text-gray-900">Explore Tourist Places</h1>
+
+      <!-- Filter Buttons -->
+      <div class="filter-buttons">
+        <button onclick="filterPlaces('all')">All</button>
+        <button onclick="filterPlaces('historical')">Historical</button>
+        <button onclick="filterPlaces('beach')">Beaches</button>
+        <button onclick="filterPlaces('waterfall')">Waterfalls</button>
+        <button onclick="filterPlaces('mountain')">Mountain</button>
+      </div>
+<div class="main">
+      <h1 class="text-2xl font-bold text-center my-10 text-gray-900">Owner Submitted Places</h1>
+
+      <!-- Places Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-6 pb-12 max-w-7xl mx-auto">
+        <% Product.forEach(function(product) { %>
+          <div class="place-card <%= product.category.toLowerCase() %> bg-white rounded-xl shadow-md hover:shadow-lg transition-transform hover:-translate-y-1">
+            
+            <% if (product.image) { %>
+              <img src="data:image/jpeg;base64,<%= Buffer.from(product.image).toString('base64') %>"
+                   alt="<%= product.name %>"
+                   class="w-full h-52 object-cover rounded-t-xl"/>
+            <% } else { %>
+              <img src="/images/default.jpg"
+                   alt="Default Image"
+                   class="w-full h-52 object-cover rounded-t-xl"/>
+            <% } %>
+
+            <div class="p-5">
+              <h2 class="text-xl font-bold text-gray-800 mb-2"><%= product.name %></h2>
+
+              <p class="text-sm text-gray-600 mb-1">
+                <i class="fa-solid fa-location-dot text-rose-500 mr-1"></i>
+                <%= product.location.city %>, <%= product.location.country %>
+              </p>
+
+              <p class="text-sm text-gray-600 mb-1">
+                <i class="fa-solid fa-tags text-teal-600 mr-1"></i>
+                Category: <%= product.category %>
+              </p>
+
+              <p class="text-sm text-gray-600 mb-1">
+                <i class="fa-solid fa-clock text-yellow-500 mr-1"></i>
+                <%= product.openingHours.open %> - <%= product.openingHours.close %>
+              </p>
+
+              <p class="text-sm text-gray-600 mb-4">
+                <i class="fa-solid fa-ticket text-green-600 mr-1"></i>
+                Entry Fee: ₹<%= product.entryFee %>
+              </p>
+
+              <a href="/addtocart/<%= product._id %>"
+                 class="block text-center w-full py-2 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition">
+                <i class="fa-solid fa-plus mr-1"></i>Add to Trip
+              </a>
+
+              <a href="/products/shop/<%= product._id %>"
+                 class="block text-center mt-2 py-2 bg-red-500 text-white font-semibold rounded-full hover:bg-red-700 transition">
+                View Details
+              </a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+
+  <!-- albom -->
+
+
+
+  <!-- Internal JavaScript -->
+  <script>
+    function filterPlaces(category) {
+      const cards = document.querySelectorAll('.place-card');
+      cards.forEach(card => {
+        const match = card.classList.contains(category.toLowerCase());
+        if (category === 'all' || match) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

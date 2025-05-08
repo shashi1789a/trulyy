@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add New Place</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #dfe9f3, #ffffff);
+      font-family: 'Poppins', sans-serif;
+      padding: 40px;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 40px;
+      max-width: 850px;
+      margin: auto;
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+      animation: slideIn 1s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .btn-submit {
+      background: #007bff;
+      color: white;
+      font-size: 1rem;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 25px;
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: #0056b3;
+    }
+
+    .section-divider {
+      margin: 30px 0 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #007bff;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .row input {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <%- include('./partials/headeroth') %>
+  <div class="form-container">
+    <h2>Add New Place</h2>
+    <form autocomplete="off" action="/products/create" method="post" enctype="multipart/form-data">
+      <!-- Basic Info -->
+      <div class="form-group"><label>Name</label><input type="text" name="name" required /></div>
+      <div class="form-group"><label>Description</label><textarea name="description" rows="3" required></textarea></div>
+      <div class="form-group">
+        <label>Category</label>
+        <select name="category" required>
+          <option value="">Select Category</option>
+          <option value="historical">Historical</option>
+          <option value="beach">Beach</option>
+          <option value="waterfall">Waterfall</option>
+          <option value="mountain">Mountain</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Upload Image</label><input type="file" name="image" /></div>
+
+      <!-- Location -->
+      <div class="section-divider"></div>
+      <div class="section-title">Location Info</div>
+      <div class="form-group row">
+        <input type="text" name="location[address]" placeholder="Address" />
+        <input type="text" name="location[city]" placeholder="City" />
+      </div>
+      <div class="form-group row">
+        <input type="text" name="location[state]" placeholder="State" />
+        <input type="text" name="location[country]" placeholder="Country" />
+      </div>
+      <div class="form-group row">
+        <input type="number" step="any" name="location[coordinates][lat]" placeholder="Latitude" required>
+        <input type="number" step="any" name="location[coordinates][lng]" placeholder="Longitude" required>
+      </div>
+
+      <!-- Entry Fee & Hours -->
+      <div class="form-group row">
+        <input type="number" name="entryFee" placeholder="Entry Fee ₹" />
+        <input type="text" name="openingHours[open]" placeholder="Open (e.g. 08:00 AM)" />
+        <input type="text" name="openingHours[close]" placeholder="Close (e.g. 06:00 PM)" />
+      </div>
+
+      <!-- Nearby Transport -->
+      <div class="section-divider"></div>
+      <div class="section-title">Nearby Transport</div>
+      <div class="form-group row">
+        <input type="text" name="nearbyTransport[0][type]" placeholder="Type (bus/train)" />
+        <input type="text" name="nearbyTransport[0][description]" placeholder="Description" />
+        <input type="number" step="any" name="nearbyTransport[0][distanceKm]" placeholder="Distance (km)" />
+      </div>
+
+      <!-- Nearby Hotel -->
+      <div class="section-divider"></div>
+      <div class="section-title">Nearby Hotel</div>
+      <div class="form-group row">
+        <input type="text" name="nearbyHotels[0][name]" placeholder="Hotel Name" />
+        <input type="text" name="nearbyHotels[0][address]" placeholder="Address" />
+      </div>
+      <div class="form-group row">
+        <input type="text" name="nearbyHotels[0][contact]" placeholder="Contact" />
+        <input type="number" step="any" name="nearbyHotels[0][coordinates][lat]" placeholder="Lat">
+        <input type="number" step="any" name="nearbyHotels[0][coordinates][lng]" placeholder="Lng">
+      </div>
+
+      <!-- Nearby Restaurant -->
+      <div class="section-divider"></div>
+      <div class="section-title">Nearby Restaurant</div>
+      <div class="form-group row">
+        <input type="text" name="nearbyRestaurants[0][name]" placeholder="Restaurant Name" />
+        <input type="text" name="nearbyRestaurants[0][address]" placeholder="Address" />
+      </div>
+      <div class="form-group row">
+        <input type="text" name="nearbyRestaurants[0][contact]" placeholder="Contact" />
+        <input type="number" step="any" name="nearbyRestaurants[0][coordinates][lat]" placeholder="Lat">
+        <input type="number" step="any" name="nearbyRestaurants[0][coordinates][lng]" placeholder="Lng">
+      </div>
+
+      <!-- Weather Info -->
+      <div class="section-divider"></div>
+      <div class="section-title">Weather Info</div>
+      <div class="form-group row">
+        <input type="number" step="any" name="weatherInfo[temperature]" placeholder="Temperature (°C)" />
+        <input type="text" name="weatherInfo[condition]" placeholder="Condition (e.g., Sunny)" />
+      </div>
+      <div class="form-group">
+        <input type="datetime-local" name="weatherInfo[lastUpdated]" placeholder="Last Updated" />
+      </div>
+
+      <!-- Tsunami Alert -->
+      <div class="section-divider"></div>
+      <div class="section-title">Tsunami Alert</div>
+      <div class="form-group">
+        <label><input type="checkbox" name="tsunamiAlert[active]" /> Active</label>
+      </div>
+      <div class="form-group"><input type="text" name="tsunamiAlert[message]" placeholder="Alert Message" /></div>
+      <div class="form-group"><input type="datetime-local" name="tsunamiAlert[issuedAt]" /></div>
+
+      <!-- Submit -->
+      <input type="submit" value="Create New Product" class="btn-submit" />
+    </form>
+  </div>
+  <%- include('./partials/footer') %>
+</body>
+</html>
