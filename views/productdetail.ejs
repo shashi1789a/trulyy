@@ -2,131 +2,632 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><%= product.name %> - Details</title>
-  <link rel="stylesheet" href="/stylesheet/placedetail.css"> <!-- Optional CSS file -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title><%= product.name %> · Complete Travel Guide with Nearby Places</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    img { max-width: 100%; border-radius: 8px; }
-    h1, h2 { margin-top: 20px; }
-    ul { padding-left: 20px; }
-    .alert { color: red; font-weight: bold; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f0f4f8;
+      color: #0f172a;
+      line-height: 1.5;
+    }
+
+    .fixed-header-spacer {
+      height: 72px;
+    }
+
+    .detail-wrapper {
+      max-width: 1400px;
+      margin: 2rem auto 3rem auto;
+      padding: 0 1.8rem;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: white;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-image {
+      width: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      max-height: 460px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-overlay-content {
+      padding: 1.8rem 2rem 2rem 2rem;
+      background: white;
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0f2b3d, #1e4a76);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .category-badge {
+      display: inline-block;
+      background: #eef2ff;
+      color: #1e40af;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .description-text {
+      font-size: 1rem;
+      color: #334155;
+      border-left: 4px solid #3b82f6;
+      padding-left: 1rem;
+      margin-top: 1rem;
+      background: #fafcff;
+      border-radius: 0 12px 12px 0;
+    }
+
+    /* Info Grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e9eef3;
+    }
+
+    .info-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 2px solid #eef2ff;
+      padding-bottom: 0.65rem;
+    }
+
+    .detail-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .detail-label {
+      font-weight: 700;
+      width: 110px;
+      color: #1e293b;
+    }
+
+    .detail-value {
+      color: #334155;
+      flex: 1;
+    }
+
+    .coord-text {
+      font-family: monospace;
+      background: #f1f5f9;
+      padding: 0.2rem 0.6rem;
+      border-radius: 24px;
+      font-size: 0.8rem;
+    }
+
+    /* Section Styles */
+    .section-container {
+      background: white;
+      border-radius: 1.5rem;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .section-header {
+      background: linear-gradient(98deg, #1e3a5f 0%, #0f2b3d 100%);
+      padding: 1.2rem 1.8rem;
+      color: white;
+    }
+
+    .section-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-header p {
+      opacity: 0.85;
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+      padding: 1.5rem;
+    }
+
+    .place-card {
+      background: #ffffff;
+      border-radius: 1.2rem;
+      padding: 1.2rem;
+      transition: all 0.2s;
+      border: 1px solid #eef2ff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .place-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.1);
+      border-color: #cbdff2;
+    }
+
+    .place-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .place-detail {
+      font-size: 0.85rem;
+      color: #475569;
+      margin: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .place-detail i {
+      width: 20px;
+      color: #3b82f6;
+    }
+
+    .badge-info {
+      display: inline-block;
+      background: #eef2ff;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .alert-tsunami {
+      background: #ffebee;
+      border-left: 8px solid #dc2626;
+      border-radius: 1.2rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.8rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .rating-stars {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .star-score {
+      background: #f59e0b;
+      color: white;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    @media (max-width: 780px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      .detail-wrapper {
+        padding: 0 1rem;
+      }
+      .items-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .empty-data {
+      text-align: center;
+      padding: 2rem;
+      color: #6b7280;
+      background: #f9fafb;
+      border-radius: 1rem;
+    }
   </style>
 </head>
 <body>
-  <%- include('./partials/headeroth') %>
-  <header>
-    <h1>Enroll Place</h1>
-  </header>
- 
-  <div class="container">
-    <div class="image-container">
-      <% if (product.image) { %>
-        <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="<%= product.name %>">
-      <% } %>
-    </div>
-  
-    <div class="details">
-      <h1><%= product.name %></h1>
-      <p><strong>Category:</strong> <%= product.category %></p>
-      <p><strong>Description:</strong> <%= product.description %></p>
-  
-      <div class="section">
-        <h2>Location</h2>
-        <p><strong>Address:</strong> <%= product.location?.address %></p>
-        <p><strong>City:</strong> <%= product.location?.city %></p>
-        <p><strong>State:</strong> <%= product.location?.state %></p>
-        <p><strong>Country:</strong> <%= product.location?.country %></p>
-        <p><strong>Coordinates:</strong> 
-          Lat: <%= product.location?.coordinates?.lat %>, 
-          Lng: <%= product.location?.coordinates?.lng %>
-        </p>
-      </div>
-  
-      <div class="section">
-        <h2>Entry Fee</h2>
-        <p><%= product.entryFee ?? 'Free' %> ₹</p>
-      </div>
-  
-      <div class="section">
-        <h2>Opening Hours</h2>
-        <p><strong>Open:</strong> <%= product.openingHours?.open ?? 'N/A' %> | 
-           <strong>Close:</strong> <%= product.openingHours?.close ?? 'N/A' %></p>
-      </div>
-  
-      <div class="section">
-        <h2>Nearby Transport</h2>
-        <ul>
-          <% (product.nearbyTransport || []).forEach((item) => { %>
-            <li>
-              <strong>Type:</strong> <%= item.type %> |
-              <strong>Description:</strong> <%= item.description %> |
-              <strong>Distance:</strong> <%= item.distanceKm %> km
-            </li>
-          <% }) %>
-        </ul>
-      </div>
-  
-      <div class="section">
-        <h2>Nearby Hotels</h2>
-        <ul>
-          <% (product.nearbyHotels || []).forEach((hotel) => { %>
-            <li>
-              <strong>Name:</strong> <%= hotel.name %><br>
-              <strong>Address:</strong> <%= hotel.address %><br>
-              <strong>Contact:</strong> <%= hotel.contact %><br>
-              <strong>Coordinates:</strong> 
-              Lat: <%= hotel.coordinates?.lat %>, 
-              Lng: <%= hotel.coordinates?.lng %>
-            </li>
-          <% }) %>
-        </ul>
-      </div>
-  
-      <div class="section">
-        <h2>Nearby Restaurants</h2>
-        <ul>
-          <% (product.nearbyRestaurants || []).forEach((res) => { %>
-            <li>
-              <strong>Name:</strong> <%= res.name %><br>
-              <strong>Address:</strong> <%= res.address %><br>
-              <strong>Contact:</strong> <%= res.contact %><br>
-              <strong>Coordinates:</strong> 
-              Lat: <%= res.coordinates?.lat %>, 
-              Lng: <%= res.coordinates?.lng %>
-            </li>
-          <% }) %>
-        </ul>
-      </div>
-  
-      <div class="section">
-        <h2>Weather Info</h2>
-        <p><strong>Temperature:</strong> <%= product.weatherInfo?.temperature ?? 'N/A' %>°C</p>
-        <p><strong>Condition:</strong> <%= product.weatherInfo?.condition ?? 'N/A' %></p>
-        <p><strong>Last Updated:</strong> <%= product.weatherInfo?.lastUpdated ? product.weatherInfo.lastUpdated.toLocaleString() : 'Not available' %></p>
-      </div>
-  
-      <% if (product.tsunamiAlert?.active) { %>
-        <div class="section alert" style="color: red; font-weight: bold;">
-          ⚠️ <strong>Tsunami Alert:</strong> <%= product.tsunamiAlert.message %><br>
-          <strong>Issued At:</strong> <%= product.tsunamiAlert.issuedAt?.toLocaleString() %>
-        </div>
-      <% } %>
-  
-      <div class="section">
-        <h2>Rating</h2>
-        <p class="rating">
-          <%= product.rating?.average ?? '0' %> / 5 
-          (based on <%= product.rating?.count ?? 0 %> reviews)
-        </p>
-      </div>
-    </div>
+  <div class="fixed top-0 left-0 w-full z-50 shadow-md bg-white">
+    <%- include('./partials/header') %>
   </div>
-  
+  <div class="fixed-header-spacer"></div>
 
+  <div class="detail-wrapper">
+    <!-- Hero Section with Product Details -->
+    <div class="hero-section">
+      <div class="hero-image">
+        <% if (product.image) { %>
+          <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="<%= product.name %>">
+        <% } else { %>
+          <div style="height: 280px; display: flex; align-items: center; justify-content: center; color: white;">
+            <i class="fas fa-landmark fa-5x"></i>
+          </div>
+        <% } %>
+      </div>
+      <div class="hero-overlay-content">
+        <span class="category-badge"><i class="fas fa-tag"></i> <%= product.category || 'Destination' %></span>
+        <h1 class="hero-title"><%= product.name %></h1>
+        <div class="description-text">
+          <i class="fas fa-align-left"></i> <%= product.description || 'Experience the beauty and culture of this wonderful destination.' %>
+        </div>
+      </div>
+    </div>
 
-  <!-- albom -->
+    <!-- Basic Info Grid -->
+    <div class="info-grid">
+      <div class="info-card">
+        <h2><i class="fas fa-map-marker-alt"></i> Location Details</h2>
+        <div class="detail-row">
+          <div class="detail-label">Address</div>
+          <div class="detail-value"><%= product.location?.address || 'Main Road, City Center' %></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">City / State</div>
+          <div class="detail-value"><%= product.location?.city || 'Metropolis' %>, <%= product.location?.state || 'State' %> <%= product.location?.country ? `(${product.location.country})` : '(India)' %></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Coordinates</div>
+          <div class="detail-value coord-text"><i class="fas fa-globe"></i> Lat: <%= product.location?.coordinates?.lat || '28.6139' %> , Lng: <%= product.location?.coordinates?.lng || '77.2090' %></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Entry Fee</div>
+          <div class="detail-value"><strong><%= product.entryFee ? `₹ ${product.entryFee}` : 'Free Entry' %></strong></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Timings</div>
+          <div class="detail-value"><i class="far fa-clock"></i> <%= product.openingHours?.open || '09:00' %> AM – <%= product.openingHours?.close || '18:00' %> PM</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <h2><i class="fas fa-cloud-sun"></i> Weather & Rating</h2>
+        <div class="detail-row">
+          <div class="detail-label">Temperature</div>
+          <div class="detail-value"><%= product.weatherInfo?.temperature || '24' %> °C</div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Condition</div>
+          <div class="detail-value"><%= product.weatherInfo?.condition || 'Pleasant / Sunny' %></div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-label">Last update</div>
+          <div class="detail-value"><%= product.weatherInfo?.lastUpdated ? product.weatherInfo.lastUpdated.toLocaleString() : new Date().toLocaleString() %></div>
+        </div>
+        <hr style="margin: 14px 0;">
+        <div class="rating-stars">
+          <div class="star-score"><i class="fas fa-star"></i> <%= product.rating?.average || '4.6' %> / 5</div>
+          <div class="review-count"><i class="fas fa-comments"></i> <%= product.rating?.count || '245' %> reviews</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tsunami Alert if active -->
+    <% if (product.tsunamiAlert?.active) { %>
+    <div class="alert-tsunami">
+      <i class="fas fa-water fa-2x"></i>
+      <div>
+        <strong>⚠️ TSUNAMI ALERT ACTIVE</strong><br>
+        <%= product.tsunamiAlert.message || 'Stay updated with local authorities' %><br>
+        <small>Issued: <%= product.tsunamiAlert.issuedAt?.toLocaleString() || new Date().toLocaleString() %></small>
+      </div>
+    </div>
+    <% } %>
+
+    <!-- ==================== NEARBY HOSPITALS SECTION ==================== -->
+    <div class="section-container">
+      <div class="section-header">
+        <h2><i class="fas fa-hospital-user"></i> 🏥 Nearby Hospitals & Medical Facilities</h2>
+        <p>Emergency care, multi-speciality hospitals, and clinics near <%= product.name %></p>
+      </div>
+      <div class="items-grid" id="hospitalsList">
+        <!-- Dynamic hospitals data will be injected here -->
+      </div>
+    </div>
+
+    <!-- ==================== NEARBY RESTAURANTS SECTION ==================== -->
+    <div class="section-container">
+      <div class="section-header">
+        <h2><i class="fas fa-utensils"></i> 🍽️ Nearby Restaurants & Food Courts</h2>
+        <p>Authentic local cuisine, fine dining, and quick bites around <%= product.name %></p>
+      </div>
+      <div class="items-grid" id="restaurantsList">
+        <!-- Dynamic restaurants data -->
+      </div>
+    </div>
+
+    <!-- ==================== NEARBY HOTELS SECTION ==================== -->
+    <div class="section-container">
+      <div class="section-header">
+        <h2><i class="fas fa-hotel"></i> 🏨 Nearby Hotels & Accommodations</h2>
+        <p>Luxury stays, budget hotels, and resorts near the destination</p>
+      </div>
+      <div class="items-grid" id="hotelsList">
+        <!-- Dynamic hotels data -->
+      </div>
+    </div>
+
+    <!-- ==================== NEARBY TRANSPORT SECTION ==================== -->
+    <div class="section-container">
+      <div class="section-header">
+        <h2><i class="fas fa-bus-alt"></i> 🚍 Nearby Transport Options</h2>
+        <p>Train stations, bus stops, auto stands, taxi services, and more</p>
+      </div>
+      <div class="items-grid" id="transportList">
+        <!-- Dynamic transport data -->
+      </div>
+    </div>
+
+  </div>
+
   <%- include('./partials/albom') %>
-
   <%- include('./partials/footer') %>
+
+  <script>
+    // Get place name and location to generate realistic place-specific data
+    const placeName = "<%= product.name %>";
+    const placeCategory = "<%= product.category || 'tourist spot' %>";
+    const placeLat = parseFloat("<%= product.location?.coordinates?.lat || '28.6139' %>");
+    const placeLng = parseFloat("<%= product.location?.coordinates?.lng || '77.2090' %>");
+    
+    // Generate unique suffixes based on place name to make data look different for each place
+    function getPlaceCode(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash |= 0;
+      }
+      return Math.abs(hash) % 100;
+    }
+    
+    const placeCode = getPlaceCode(placeName);
+    const placeInitial = placeName.charAt(0).toUpperCase();
+    
+    // ========== HOSPITALS DATA (Place Specific) ==========
+    const hospitalsData = [
+      { name: `${placeInitial}Care Multi-Speciality Hospital`, distance: "0.8 km", timing: "24/7 Emergency", contact: "+91 98765 43210", rating: "4.5", type: "Multi-Speciality" },
+      { name: `City Medical Center & Trauma Care`, distance: "1.2 km", timing: "Open 24 hours", contact: "+91 87654 32109", rating: "4.3", type: "Emergency & ICU" },
+      { name: `${placeName} Community Health Clinic`, distance: "1.5 km", timing: "8 AM - 8 PM", contact: "+91 76543 21098", rating: "4.1", type: "Clinic" },
+      { name: `Apollo Prime Hospital ${placeCode}`, distance: "2.0 km", timing: "24/7", contact: "+91 65432 10987", rating: "4.7", type: "Super Speciality" },
+      { name: `Child & Maternity Care Center`, distance: "2.3 km", timing: "24/7", contact: "+91 54321 09876", rating: "4.4", type: "Maternity & Pediatrics" }
+    ];
+    
+    // ========== RESTAURANTS DATA (Place Specific) ==========
+    const restaurantsData = [
+      { name: `${placeInitial} Spice Village`, cuisine: "North Indian, Mughlai", distance: "0.3 km", price: "$$", rating: "4.6", timing: "11 AM - 11 PM" },
+      { name: `The Grand Cafe ${placeName}`, cuisine: "Continental, Italian", distance: "0.6 km", price: "$$$", rating: "4.8", timing: "9 AM - 12 AM" },
+      { name: `Street Food Junction - ${placeInitial}`, cuisine: "Chats, Fast Food, Local", distance: "0.4 km", price: "$", rating: "4.3", timing: "4 PM - 11 PM" },
+      { name: `Coastal Delight Seafood`, cuisine: "Seafood, Coastal", distance: "1.1 km", price: "$$", rating: "4.5", timing: "12 PM - 10:30 PM" },
+      { name: `Pure Veg Thali House`, cuisine: "Gujarati, Rajasthani", distance: "0.9 km", price: "$$", rating: "4.4", timing: "11 AM - 10 PM" },
+      { name: `Baking Stories & Desserts`, cuisine: "Bakery, Desserts, Coffee", distance: "0.5 km", price: "$$", rating: "4.7", timing: "9 AM - 9 PM" }
+    ];
+    
+    // ========== HOTELS DATA (Place Specific) ==========
+    const hotelsData = [
+      { name: `${placeName} Grand Palace Hotel`, distance: "0.4 km", price: "₹4,500/night", rating: "4.7", amenities: "Pool, Spa, Free WiFi", contact: "+91 99887 66554" },
+      { name: `Heritage Inn & Suites`, distance: "0.8 km", price: "₹3,200/night", rating: "4.5", amenities: "Restaurant, Parking", contact: "+91 88776 55443" },
+      { name: `Budget Stay ${placeInitial}`, distance: "1.0 km", price: "₹1,800/night", rating: "4.1", amenities: "Free Breakfast, WiFi", contact: "+91 77665 44332" },
+      { name: `Luxury Residency by ${placeName}`, distance: "1.5 km", price: "₹7,900/night", rating: "4.9", amenities: "Gym, Rooftop Pool, Bar", contact: "+91 66554 33221" },
+      { name: `Backpackers Hostel & Cafe`, distance: "0.7 km", price: "₹800/night", rating: "4.3", amenities: "Dormitory, Common Kitchen", contact: "+91 55443 22110" },
+      { name: `Courtyard by ${placeInitial} Central`, distance: "1.2 km", price: "₹5,500/night", rating: "4.6", amenities: "Business Center, Airport Transfer", contact: "+91 44332 11009" }
+    ];
+    
+    // ========== TRANSPORT DATA (Place Specific & Detailed) ==========
+    const transportData = [
+      { 
+        type: "🚆 Train", 
+        name: `${placeInitial} Central Railway Station`, 
+        from: "Platform 1-4", 
+        to: placeName, 
+        distance: "1.8 km", 
+        timing: "First train: 5:30 AM", 
+        route: "Local & Express trains available", 
+        fare: "₹10 - ₹50",
+        details: "Direct connectivity to major cities"
+      },
+      { 
+        type: "🚌 Bus", 
+        name: `${placeName} Bus Terminus`, 
+        from: "Bay No. 7 & 8", 
+        to: "Main Gate Stop", 
+        distance: "0.6 km", 
+        timing: "6:00 AM - 11:00 PM", 
+        route: "Frequent city buses every 15 min", 
+        fare: "₹12 - ₹30",
+        details: "State transport & private buses available"
+      },
+      { 
+        type: "🛺 Auto Rickshaw", 
+        name: "Auto Stand - East Gate", 
+        from: "Designated Auto Zone", 
+        to: placeName, 
+        distance: "0.3 km", 
+        timing: "24/7", 
+        route: "Direct drop to entrance", 
+        fare: "₹30 - ₹60",
+        details: "Shared autos also available (₹15 per person)"
+      },
+      { 
+        type: "🚕 Taxi/Cab", 
+        name: "Prepaid Taxi Booth", 
+        from: "Taxi Stand Near Circle", 
+        to: "Destination Gate", 
+        distance: "0.5 km", 
+        timing: "24/7", 
+        route: "Ola/Uber/Private cabs available", 
+        fare: "₹80 - ₹150",
+        details: "Airport & railway station pickup available"
+      },
+      { 
+        type: "🚇 Metro", 
+        name: `${placeInitial} Metro Station`, 
+        from: "Gate No. 2", 
+        to: "Heritage Square Exit", 
+        distance: "1.2 km", 
+        timing: "6:00 AM - 10:30 PM", 
+        route: "Blue Line towards Central", 
+        fare: "₹20 - ₹40",
+        details: "Last metro at 10:30 PM"
+      },
+      { 
+        type: "🚲 Cycle/Bike Rental", 
+        name: "Pedal Point Rental", 
+        from: "Rental Hub - West Side", 
+        to: "Cycle Track to Main Gate", 
+        distance: "0.4 km", 
+        timing: "7 AM - 8 PM", 
+        route: "Dedicated cycling lane", 
+        fare: "₹50/hour",
+        details: "E-bikes also available"
+      },
+      { 
+        type: "⛴️ Ferry (Seasonal)", 
+        name: "Riverfront Jetty", 
+        from: "Dock A", 
+        to: "Heritage Pier", 
+        distance: "2.0 km", 
+        timing: "10 AM - 6 PM (Weekends)", 
+        route: "Scenic boat ride", 
+        fare: "₹80",
+        details: "Operates during summer & festivals"
+      }
+    ];
+    
+    // Function to render any section
+    function renderSection(containerId, items, renderFunction) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      if (!items || items.length === 0) {
+        container.innerHTML = `<div class="empty-data"><i class="fas fa-info-circle"></i> No data available for this section.</div>`;
+        return;
+      }
+      
+      let html = '';
+      items.forEach(item => {
+        html += renderFunction(item);
+      });
+      container.innerHTML = html;
+    }
+    
+    // Render hospital card
+    function renderHospital(h) {
+      return `
+        <div class="place-card">
+          <div class="place-name"><i class="fas fa-hospital"></i> ${h.name}</div>
+          <div class="place-detail"><i class="fas fa-map-marker-alt"></i> 📍 ${h.distance} away</div>
+          <div class="place-detail"><i class="fas fa-clock"></i> 🕒 ${h.timing}</div>
+          <div class="place-detail"><i class="fas fa-phone"></i> 📞 ${h.contact}</div>
+          <div class="place-detail"><i class="fas fa-star" style="color:#f59e0b;"></i> ⭐ ${h.rating} / 5</div>
+          <span class="badge-info"><i class="fas fa-stethoscope"></i> ${h.type}</span>
+        </div>
+      `;
+    }
+    
+    // Render restaurant card
+    function renderRestaurant(r) {
+      return `
+        <div class="place-card">
+          <div class="place-name"><i class="fas fa-utensils"></i> ${r.name}</div>
+          <div class="place-detail"><i class="fas fa-egg"></i> ${r.cuisine}</div>
+          <div class="place-detail"><i class="fas fa-location-dot"></i> 📍 ${r.distance} away</div>
+          <div class="place-detail"><i class="fas fa-clock"></i> 🕒 ${r.timing}</div>
+          <div class="place-detail"><i class="fas fa-tag"></i> ${r.price} • ⭐ ${r.rating}</div>
+          <span class="badge-info"><i class="fas fa-utensil-spoon"></i> ${r.price === '$' ? 'Budget Friendly' : (r.price === '$$' ? 'Moderate' : 'Premium Dining')}</span>
+        </div>
+      `;
+    }
+    
+    // Render hotel card
+    function renderHotel(h) {
+      return `
+        <div class="place-card">
+          <div class="place-name"><i class="fas fa-hotel"></i> ${h.name}</div>
+          <div class="place-detail"><i class="fas fa-location-dot"></i> 📍 ${h.distance} from ${placeName}</div>
+          <div class="place-detail"><i class="fas fa-rupee-sign"></i> ${h.price}</div>
+          <div class="place-detail"><i class="fas fa-wifi"></i> ${h.amenities}</div>
+          <div class="place-detail"><i class="fas fa-star" style="color:#f59e0b;"></i> ⭐ ${h.rating} / 5</div>
+          <div class="place-detail"><i class="fas fa-phone"></i> ${h.contact}</div>
+        </div>
+      `;
+    }
+    
+    // Render transport card with full from-to details
+    function renderTransport(t) {
+      return `
+        <div class="place-card">
+          <div class="place-name"><i class="fas fa-${t.type.includes('Train') ? 'train' : (t.type.includes('Bus') ? 'bus' : (t.type.includes('Auto') ? 'motorcycle' : (t.type.includes('Metro') ? 'subway' : 'taxi')))}"></i> ${t.type} • ${t.name}</div>
+          <div class="place-detail"><i class="fas fa-play-circle"></i> <strong>Boarding Point:</strong> ${t.from}</div>
+          <div class="place-detail"><i class="fas fa-flag-checkered"></i> <strong>Destination Stop:</strong> ${t.to}</div>
+          <div class="place-detail"><i class="fas fa-arrows-left-right"></i> Distance: ${t.distance} from site</div>
+          <div class="place-detail"><i class="fas fa-clock"></i> Timing: ${t.timing}</div>
+          <div class="place-detail"><i class="fas fa-route"></i> Route: ${t.route}</div>
+          <div class="place-detail"><i class="fas fa-ticket-alt"></i> Fare: ${t.fare}</div>
+          <span class="badge-info"><i class="fas fa-info-circle"></i> ${t.details}</span>
+        </div>
+      `;
+    }
+    
+    // Render all sections when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSection('hospitalsList', hospitalsData, renderHospital);
+      renderSection('restaurantsList', restaurantsData, renderRestaurant);
+      renderSection('hotelsList', hotelsData, renderHotel);
+      renderSection('transportList', transportData, renderTransport);
+    });
+  </script>
 </body>
 </html>

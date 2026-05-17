@@ -1,22 +1,674 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TravelWorld Footer | Modern Travel Footer</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Poppins + Inter for modern travel vibe -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       TRAVELWORLD FOOTER STYLESHEET (Enhanced for Travel & Tourism)
+       Standalone component — premium design, fully responsive
+       ============================================================ */
+
+    /* ========== 1. CSS VARIABLES (Travel inspired) ========== */
+    :root {
+      --footer-bg: linear-gradient(135deg, #0B1A2E 0%, #0F212F 100%);
+      --footer-surface: rgba(255, 255, 255, 0.03);
+      --border-dim: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.12);
+      --footer-text: rgba(255, 255, 255, 0.75);
+      --footer-text-muted: rgba(255, 255, 255, 0.45);
+      --footer-link-hover: #FFB347;     /* warm sunset / travel accent */
+      --footer-accent: #3b82f6;
+      --footer-cta: #f59e0b;
+      --footer-glow: rgba(255, 180, 71, 0.2);
+      --radius-lg: 24px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --radius-pill: 60px;
+      --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      --font-heading: 'Poppins', 'Inter', sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ========== 2. RESET & BASE ========== */
+    .site-footer * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .site-footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid rgba(255, 215, 150, 0.1);
+    }
+
+    /* subtle animated wave overlay (travel feeling) */
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #FFB347, #FFD966, #FFB347, transparent);
+      opacity: 0.5;
+    }
+
+    /* Container – full width with luxury spacing */
+    .site-footer .container {
+      width: 100%;
+      max-width: 100%;
+      padding-left: 80px;
+      padding-right: 80px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 1399px) {
+      .site-footer .container { padding-left: 60px; padding-right: 60px; }
+    }
+    @media (max-width: 1199px) {
+      .site-footer .container { padding-left: 48px; padding-right: 48px; }
+    }
+    @media (max-width: 991px) {
+      .site-footer .container { padding-left: 32px; padding-right: 32px; }
+    }
+    @media (max-width: 767px) {
+      .site-footer .container { padding-left: 24px; padding-right: 24px; }
+    }
+    @media (max-width: 575px) {
+      .site-footer .container { padding-left: 20px; padding-right: 20px; }
+    }
+
+    /* ========== 3. TOP ACCENT BAR (adventure stripe) ========== */
+    .footer-top-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #FFB347, #FF8C42, #F4A261, #FFB347, #2A9D8F, #FFB347);
+      background-size: 250% 100%;
+      animation: shimmerMove 8s ease infinite;
+      margin-bottom: 0;
+    }
+    @keyframes shimmerMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ========== 4. FOOTER GRID – 5 COLUMNS (travel optimised) ========== */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1.6fr;
+      gap: 2.5rem;
+      padding: 70px 0 50px;
+    }
+
+    /* ========== 5. BRAND COLUMN with travel emblem ========== */
+    .footer-logo-link {
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      transition: var(--transition);
+    }
+    .footer-logo-link:hover {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 6px 12px rgba(255, 180, 71, 0.2));
+    }
+    .footer-logo-img {
+      height: 48px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      display: block;
+    }
+    .footer-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--footer-text-muted);
+      max-width: 300px;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(2px);
+    }
+
+    /* app badges - modern glassmorphism */
+    .footer-app-badges {
+      display: flex;
+      gap: 12px;
+      margin: 1rem 0 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-app-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-dim);
+      border-radius: 14px;
+      padding: 8px 18px;
+      text-decoration: none;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .footer-app-badge:hover {
+      background: rgba(255, 180, 71, 0.15);
+      border-color: rgba(255, 180, 71, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .footer-app-icon {
+      font-size: 1.6rem;
+      color: #FFB347;
+    }
+    .footer-app-text small {
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.5px;
+    }
+    .footer-app-text span {
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* social media - travel community */
+    .footer-social-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .footer-social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      transition: var(--transition);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-social-link:hover {
+      background: #FFB347;
+      color: #0B1A2E;
+      transform: translateY(-4px);
+      border-color: #FFB347;
+      box-shadow: 0 6px 14px rgba(255, 180, 71, 0.35);
+    }
+
+    /* ========== 6. LINKS COLUMNS (Explore, Services, Company) ========== */
+    .footer-col-heading {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: #FFE5B4;
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      display: inline-block;
+      position: relative;
+    }
+    .footer-col-heading:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 32px;
+      height: 2px;
+      background: #FFB347;
+      border-radius: 2px;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.88rem;
+    }
+    .footer-links-list li {
+      margin-bottom: 0.75rem;
+    }
+    .footer-link {
+      color: var(--footer-text);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 450;
+    }
+    .footer-link i {
+      font-size: 0.7rem;
+      color: rgba(255,180,71,0.7);
+      transition: var(--transition);
+    }
+    .footer-link:hover {
+      color: var(--footer-link-hover);
+      transform: translateX(6px);
+    }
+    .footer-link:hover i {
+      color: #FFB347;
+      transform: translateX(2px);
+    }
+
+    /* ========== 7. CONTACT COLUMN with real travel touch ========== */
+    .footer-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 1.8rem;
+    }
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--footer-text);
+      font-size: 0.87rem;
+      text-decoration: none;
+      transition: var(--transition);
+      padding: 4px 0;
+    }
+    .footer-contact-item i {
+      width: 22px;
+      font-size: 1rem;
+      color: #FFB347;
+      flex-shrink: 0;
+    }
+    .footer-contact-item:hover {
+      color: #FFB347;
+      transform: translateX(4px);
+    }
+
+    /* newsletter - dream escape */
+    .footer-newsletter p {
+      font-size: 0.75rem;
+      color: #FFE0A3;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .footer-newsletter-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: rgba(255,255,255,0.03);
+      border-radius: 60px;
+      padding: 3px;
+      border: 1px solid rgba(255,180,71,0.2);
+      transition: var(--transition);
+    }
+    .footer-newsletter-row:focus-within {
+      border-color: #FFB347;
+      box-shadow: 0 0 12px rgba(255,180,71,0.2);
+    }
+    .footer-email-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 12px 18px;
+      color: white;
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      outline: none;
+    }
+    .footer-email-input::placeholder {
+      color: rgba(255,255,255,0.4);
+      font-weight: 400;
+    }
+    .footer-subscribe-btn {
+      background: linear-gradient(125deg, #FFB347, #FF8C42);
+      color: #0B1A2E;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 22px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      letter-spacing: 0.3px;
+    }
+    .footer-subscribe-btn i {
+      font-size: 0.85rem;
+    }
+    .footer-subscribe-btn:hover {
+      background: linear-gradient(125deg, #FFC164, #FF9F4A);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(255, 140, 66, 0.4);
+    }
+
+    /* ========== 8. BOTTOM BAR (copyright + flex) ========== */
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 20px 0 30px;
+      border-top: 1px solid var(--border-dim);
+      margin-top: 0;
+      font-size: 0.8rem;
+    }
+    .footer-bottom p {
+      color: var(--footer-text-muted);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-bottom p i {
+      color: #FF6B6B;
+      font-size: 0.85rem;
+      animation: heartBeat 1.2s ease infinite;
+    }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-bottom-link {
+      color: var(--footer-text-muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      transition: var(--transition);
+    }
+    .footer-bottom-link:hover {
+      color: #FFB347;
+    }
+
+    /* ========== 9. RESPONSIVE EXCELLENCE (Travel devices) ========== */
+    @media (max-width: 1199px) {
+      .footer-grid {
+        grid-template-columns: 1.8fr 1fr 1fr 1fr;
+        gap: 2rem;
+      }
+      .footer-contact-col {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+        padding: 50px 0 40px;
+      }
+      .footer-brand-col {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.8rem;
+        align-items: start;
+      }
+      .footer-contact-col {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+      .footer-desc {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 40px 0 30px;
+        gap: 2rem;
+      }
+      .footer-brand-col {
+        grid-column: 1 / -1;
+        display: block;
+      }
+      .footer-contact-col {
+        grid-column: 1 / -1;
+        display: block;
+      }
+      .footer-app-badges {
+        margin: 0.5rem 0 1rem;
+        justify-content: flex-start;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+      }
+      .footer-bottom-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 36px 0 28px;
+      }
+      .footer-brand-col {
+        display: block;
+      }
+      .footer-contact-col {
+        display: block;
+      }
+      .footer-newsletter-row {
+        flex-direction: column;
+        background: transparent;
+        border: none;
+        gap: 10px;
+      }
+      .footer-email-input {
+        background: rgba(255,255,255,0.05);
+        border-radius: 60px;
+        border: 1px solid rgba(255,180,71,0.2);
+        width: 100%;
+      }
+      .footer-subscribe-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .footer-app-badges {
+        flex-direction: column;
+        width: 100%;
+      }
+      .footer-app-badge {
+        width: 100%;
+        justify-content: center;
+      }
+      .footer-social-row {
+        justify-content: center;
+      }
+      .footer-col-heading:after {
+        width: 40px;
+      }
+    }
+
+    /* small phones extreme polish */
+    @media (max-width: 380px) {
+      .footer-logo-img {
+        height: 40px;
+      }
+      .footer-desc {
+        font-size: 0.82rem;
+      }
+      .footer-link {
+        font-size: 0.85rem;
+      }
+    }
+
+    /* hover-free touch improvements */
+    @media (hover: none) and (pointer: coarse) {
+      .footer-app-badge:hover, .footer-social-link:hover, .footer-link:hover {
+        transform: none;
+      }
+      .footer-subscribe-btn:hover {
+        transform: none;
+      }
+    }
+
+    /* extra travel glow effect for badges */
+    .footer-app-badge .fab {
+      transition: var(--transition);
+    }
+    .footer-app-badge:hover .fab {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
-<style>
-    footer {
-  background: #003049;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-}
-</style>
 <body>
-    <footer>
-        <p>&copy; 2025 TravelExplorer. All rights reserved.</p>
-      </footer>
+  <footer class="site-footer">
+    <div class="footer-top-bar"></div>
+
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- 🌍 Brand Column – Travel Identity -->
+        <div class="footer-brand-col">
+          <a href="/" class="footer-logo-link">
+            <img src="https://placehold.co/240x60/1E3A5F/white?text=TravelWorld&font=poppins" alt="TravelWorld" class="footer-logo-img" style="border-radius: 12px;">
+          </a>
+          <p class="footer-desc">
+            ✈️ Your ultimate travel companion — explore hidden gems, iconic beaches, sacred temples, cascading waterfalls, and plan unforgettable journeys with AI-powered insights & real-time weather.
+          </p>
+
+          <!-- App Store buttons with travel style -->
+          <div class="footer-app-badges">
+            <a href="#" class="footer-app-badge">
+              <i class="fab fa-google-play footer-app-icon"></i>
+              <span class="footer-app-text">
+                <small>GET IT ON</small>
+                <span>Google Play</span>
+              </span>
+            </a>
+            <a href="#" class="footer-app-badge">
+              <i class="fab fa-apple footer-app-icon"></i>
+              <span class="footer-app-text">
+                <small>Download on the</small>
+                <span>App Store</span>
+              </span>
+            </a>
+          </div>
+
+          <!-- Social travel community -->
+          <div class="footer-social-row">
+            <a href="#" class="footer-social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer-social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="footer-social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="footer-social-link" aria-label="X / Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- 🧭 Explore Destinations -->
+        <div class="footer-links-col">
+          <h6 class="footer-col-heading">Explore</h6>
+          <ul class="footer-links-list">
+            <li><a href="/places" class="footer-link"><i class="fas fa-chevron-right"></i> Popular Places</a></li>
+            <li><a href="/beaches" class="footer-link"><i class="fas fa-chevron-right"></i> Beaches</a></li>
+            <li><a href="/temples" class="footer-link"><i class="fas fa-chevron-right"></i> Temples</a></li>
+            <li><a href="/waterfalls" class="footer-link"><i class="fas fa-chevron-right"></i> Waterfalls</a></li>
+            <li><a href="/historical" class="footer-link"><i class="fas fa-chevron-right"></i> Historical Sites</a></li>
+            <li><a href="/hill-stations" class="footer-link"><i class="fas fa-chevron-right"></i> Hill Stations</a></li>
+          </ul>
+        </div>
+
+        <!-- 🧳 Travel Services -->
+        <div class="footer-links-col">
+          <h6 class="footer-col-heading">Services</h6>
+          <ul class="footer-links-list">
+            <li><a href="/trip-planner" class="footer-link"><i class="fas fa-chevron-right"></i> AI Trip Planner</a></li>
+            <li><a href="/weather" class="footer-link"><i class="fas fa-chevron-right"></i> Live Weather</a></li>
+            <li><a href="/maps" class="footer-link"><i class="fas fa-chevron-right"></i> Interactive Maps</a></li>
+            <li><a href="/hotels" class="footer-link"><i class="fas fa-chevron-right"></i> Hotels & Resort</a></li>
+            <li><a href="/restaurants" class="footer-link"><i class="fas fa-chevron-right"></i> Local Cuisine</a></li>
+            <li><a href="/packages" class="footer-link"><i class="fas fa-chevron-right"></i> Travel Packages</a></li>
+          </ul>
+        </div>
+
+        <!-- 🏢 Company & Legal -->
+        <div class="footer-links-col">
+          <h6 class="footer-col-heading">Company</h6>
+          <ul class="footer-links-list">
+            <li><a href="/about" class="footer-link"><i class="fas fa-chevron-right"></i> About TravelWorld</a></li>
+            <li><a href="/contact" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+            <li><a href="/blog" class="footer-link"><i class="fas fa-chevron-right"></i> Travel Blog</a></li>
+            <li><a href="/support" class="footer-link"><i class="fas fa-chevron-right"></i> Support Center</a></li>
+            <li><a href="/careers" class="footer-link"><i class="fas fa-chevron-right"></i> Careers</a></li>
+            <li><a href="/privacy" class="footer-link"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- 📞 Contact & Newsletter (Travel Updates) -->
+        <div class="footer-contact-col">
+          <h6 class="footer-col-heading">Get In Touch</h6>
+
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <i class="fas fa-map-pin"></i>
+              <span>Ghaziabad, Uttar Pradesh, India (HQ)</span>
+            </div>
+            <a href="tel:+919999999999" class="footer-contact-item">
+              <i class="fas fa-headset"></i>
+              <span>+91 99999 99999 (24/7 Travel Support)</span>
+            </a>
+            <a href="mailto:hello@travelworld.com" class="footer-contact-item">
+              <i class="fas fa-envelope-open-text"></i>
+              <span>hello@travelworld.com</span>
+            </a>
+          </div>
+
+          <!-- Newsletter: wanderlust updates -->
+          <form action="/subscribe" method="post" class="footer-newsletter">
+            <p><i class="fas fa-paper-plane"></i> NEVER MISS AN ADVENTURE</p>
+            <div class="footer-newsletter-row">
+              <input type="email" name="email" required placeholder="Your email for travel inspo ✨" class="footer-email-input">
+              <button class="footer-subscribe-btn" type="submit">
+                <i class="fas fa-location-arrow"></i> Subscribe
+              </button>
+            </div>
+            <small style="font-size: 0.7rem; color: rgba(255,255,255,0.3); display: block; margin-top: 8px;">✨ Get exclusive travel deals & hidden gems</small>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar with heart and links -->
+      <div class="footer-bottom">
+        <p>© 2026 TravelWorld — Explore Beyond Boundaries. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="/terms" class="footer-bottom-link">Terms of Service</a>
+          <a href="/privacy" class="footer-bottom-link">Privacy & Cookies</a>
+          <a href="/sitemap" class="footer-bottom-link">Sitemap</a>
+        </div>
+        <p><i class="fas fa-heart"></i> Crafted for Travelers, by explorers</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

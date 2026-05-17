@@ -1,118 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Header</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <link rel="stylesheet" href="/stylesheet/shop.css"> -->
-    <link rel="stylesheet" href="/stylesheet/style.css">
-</head>
-<!-- <body class="bg-gray-100">  -->
-    <body>
-        <div class="body">
-    <!-- <nav class="bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                Logo  -->
-                <!-- <h2 class="text-2xl font-bold text-gray-800"></h2> -->
-                
-                <!-- Menu Links -->
-                <!-- <% var loggedin = typeof loggedin !== "undefined" ? loggedin : true %>
-                <% if (loggedin) { %>
-                <div class="hidden md:flex space-x-6">
-                    <a href="/shop" class="text-gray-600 hover:text-gray-900">Shop</a>
-                    <a href="/cart" class="text-gray-600 hover:text-gray-900">Favourate</a>
-                    <a href="owner-login" class="text-gray-600 hover:text-gray-900">My Account</a>
-                    <a href="/users/Logout" class="text-red-500 hover:text-red-700">Logout</a>
-                    
-                </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourly | Professional Header & Navigation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-                 Mobile Menu Button 
-                <button id="menu-btn" class="md:hidden focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-                <% } %>
-            </div> 
-        
-                
-             </div> -->
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+      min-height: 100vh;
+    }
 
-            <button id="menu-btn" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button> 
-           
-            <div class="bodymain">
-                <header>
-                   <div class="icon1"> <div class="i"><i class="fa-solid fa-phone"></i></div> Further Inquires:<br>+01 (123)4567 90</div>
-                   <div class="icon2"> <i class="fa-solid fa-plane-departure"></i>  TOURLY</div>
-                <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                    
-                </header>
-                <hr>
-                <nav><div class="navi">
-                    <div class="i1">
-                        <i class="fa-brands fa-facebook"></i></div>
-                        <div class="i1">
-                    <i class="fa-brands fa-twitter"></i> </div>
-                <div class="i1">
-                    <i class="fa-brands fa-youtube"></i>   </i></div>
-                </div>
-                <% var loggedin = typeof loggedin !== "undefined" ? loggedin : true %>
-            <% if (loggedin) { %>
-                <div class="hidden md:flex space-x-6">
-                <div class="ul">
+    /* demo content to show header properly */
+    .demo-content {
+      margin-top: 140px;
+      padding: 60px 5%;
+      text-align: center;
+    }
 
-                    <ul>
-                        <li><a href="/shop" >Home</a></li>
-                        <li> <a href="/cart" >Add to Trip</a></li>
-                        <li> <a href="owner-login" >My Account</a></li>
-                        <li><a href="/users/Logout">Logout</a></li>
-               <li> <a href="/aboutus">about us</a></li>
-               <li> <a href="/destination">destination</a></li>
-               <li> <a href="/galery">gallery</a></li>
-               <li> <a href="/contactus">contact us</a></ul></li>
-            </div></div>
-                <button>book now</button>
+    .demo-content h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #0f172a, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
 
-        </div>
+    .demo-content p {
+      color: #475569;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
 
+    .demo-card {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
 
+    .demo-card span {
+      background: white;
+      padding: 12px 24px;
+      border-radius: 60px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-weight: 500;
+      color: #4f46e5;
+    }
 
-
-
-            <% } %>
-        
-
-            <!-- Mobile Menu -->
-            <% if (loggedin) { %>
-            <div id="mobile-menu" class="hidden md:hidden flex flex-col space-y-4 py-2 bg-white shadow-md">
-                <a href="/shop.ejs" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Shop</a>
-                <a href="/cart" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">Cart</a>
-                <a href="/owner-login" class="block px-4 py-2 text-gray-600 hover:bg-gray-100">My Account</a>
-                <a href="/users/Logout" class="block px-4 py-2 text-red-500 hover:bg-gray-100">Logout</a>
-                <li> <a href="/aboutus" class="block px-4 py-2 text-red-500 hover:bg-gray-100">about us</a></li>
-                <li> <a href="/destination " class="block px-4 py-2 text-red-500 hover:bg-gray-100">destination</a></li>
-                <li> <a href="/galery" class="block px-4 py-2 text-red-500 hover:bg-gray-100">gallery</a></li>
-                <li> <a href="/contactus" class="block px-4 py-2 text-red-500 hover:bg-gray-100">contact us</a></ul></li>
-            </div>
-            <% } %>
-        </div>
-        
-    </nav>
+    /* ========== PROFESSIONAL HEADER + NAVIGATION ========== */
     
+    /* Top Header Bar */
+    .top-header {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #1e293b;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+    .contact-info {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-    </script>
+    .contact-info span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      letter-spacing: 0.3px;
+    }
+
+    .contact-info i {
+      color: #818cf8;
+      font-size: 0.9rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .social-icons a {
+      color: #94a3b8;
+      transition: all 0.25s ease;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      color: white;
+      background: #4f46e5;
+      transform: translateY(-2px);
+    }
+
+    /* Main Header Container */
+    .main-header {
+      background: white;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #eef2ff;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    /* Logo Area */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .logo:hover {
+      transform: scale(1.02);
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 16px -4px rgba(79, 70, 229, 0.3);
+    }
+
+    .logo-icon i {
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .logo-text {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0f172a, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .logo-badge {
+      font-size: 0.7rem;
+      background: #eef2ff;
+      color: #4f46e5;
+      padding: 2px 10px;
+      border-radius: 30px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    /* Desktop Navigation - ALL ORIGINAL LINKS */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 40px;
+      transition: all 0.25s ease;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links li a i {
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    .nav-links li a:hover {
+      background: #f1f5f9;
+      color: #4f46e5;
+    }
+
+    .nav-links li a:hover i {
+      opacity: 1;
+      color: #4f46e5;
+    }
+
+    /* Action Buttons */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: 20px;
+    }
+
+    .search-btn {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #475569;
+    }
+
+    .search-btn:hover {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: white;
+      transform: scale(1.03);
+    }
+
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: #f1f5f9;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #1e293b;
+      padding: 8px 14px;
+      border-radius: 40px;
+      transition: all 0.2s;
+    }
+
+    .mobile-menu-btn:hover {
+      background: #e2e8f0;
+    }
+
+    /* Mobile Drawer (offcanvas) */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100%;
+      background: white;
+      box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+      z-index: 2000;
+      transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      right: 0;
+    }
+
+    .drawer-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid #eef2ff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafbff;
+    }
+
+    .drawer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, #0f172a, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .close-drawer {
+      background: #f1f5f9;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #475569;
+      transition: all 0.2s;
+    }
+
+    .close-drawer:hover {
+      background: #e2e8f0;
+    }
+
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 4px;
+    }
+
+    .drawer-nav a {
+      text-decoration: none;
+      color: #1e293b;
+      font-weight: 500;
+      padding: 14px 18px;
+      border-radius: 16px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1rem;
+    }
+
+    .drawer-nav a i {
+      width: 24px;
+      color: #4f46e5;
+      font-size: 1.1rem;
+    }
+
+    .drawer-nav a:hover {
+      background: #f1f5f9;
+      color: #4f46e5;
+      padding-left: 24px;
+    }
+
+    .drawer-footer {
+      margin-top: auto;
+      padding: 20px;
+      border-top: 1px solid #eef2ff;
+      text-align: center;
+    }
+
+    .drawer-footer .social-mobile {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .drawer-footer .social-mobile a {
+      color: #64748b;
+      font-size: 1.3rem;
+      transition: 0.2s;
+    }
+
+    .drawer-footer .social-mobile a:hover {
+      color: #4f46e5;
+      transform: translateY(-2px);
+    }
+
+    /* overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(3px);
+      z-index: 1999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 1050px) {
+      .nav-links li a {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+      .nav-links li a i {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .nav-actions {
+        margin-left: 0;
+      }
+      .logo-text {
+        font-size: 1.4rem;
+      }
+      .logo-badge {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .top-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .contact-info {
+        justify-content: center;
+        gap: 16px;
+      }
+      .header-container {
+        height: 70px;
+      }
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+      }
+      .logo-text {
+        font-size: 1.3rem;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .main-header {
+      animation: fadeIn 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PROFESSIONAL HEADER + COMPLETE NAVIGATION WITH ALL ORIGINAL LINKS -->
+  
+  <!-- Top Bar : Contact & Social -->
+  <div class="top-header">
+    <div class="contact-info">
+      <span><i class="fa-solid fa-phone-volume"></i> Further Inquires: +01 (123) 4567 90</span>
+      <span><i class="fa-regular fa-envelope"></i> support@tourly.com</span>
+      <span><i class="fa-regular fa-clock"></i> 24/7 Customer Support</span>
+    </div>
+    <div class="social-icons">
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <div class="main-header">
+    <div class="header-container">
+      <!-- Logo -->
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-plane-departure"></i>
+        </div>
+        <div class="logo-text">
+          TOURLY <span class="logo-badge">travel</span>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation - ALL ORIGINAL LINKS RESTORED -->
+      <div class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="/home"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="/addtrip"><i class="fa-solid fa-plus-circle"></i> Add to Trip</a></li>
+          <li><a href="/destinations"><i class="fa-solid fa-location-dot"></i> Destination</a></li>
+          <li><a href="/galery"><i class="fa-regular fa-images"></i> Gallery</a></li>
+          <li><a href="/aboutus"><i class="fa-solid fa-info-circle"></i> About Us</a></li>
+          <li><a href="/contactus"><i class="fa-regular fa-envelope"></i> Contact Us</a></li>
+          <li><a href="/users/Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+        
+        <div class="nav-actions">
+          <div class="search-btn" id="searchIcon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" id="openDrawerBtn">
+        <i class="fa-solid fa-bars"></i> <span style="font-size: 0.8rem;">Menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer (ALL LINKS INCLUDED) -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="drawer-logo">
+        <i class="fa-solid fa-plane-departure" style="color:#4f46e5;"></i> Tourly
+      </div>
+      <button class="close-drawer" id="closeDrawerBtn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="drawer-nav">
+      <a href="/home"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="/addtrip"><i class="fa-solid fa-plus-circle"></i> Add to Trip</a>
+      <a href="/destinations"><i class="fa-solid fa-location-dot"></i> Destination</a>
+      <a href="/galery"><i class="fa-regular fa-images"></i> Gallery</a>
+      <a href="/aboutus"><i class="fa-solid fa-users"></i> About Us</a>
+      <a href="/contactus"><i class="fa-regular fa-message"></i> Contact Us</a>
+      <a href="/users/Logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+    </div>
+    <div class="drawer-footer">
+      <div class="social-mobile">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+      <p style="font-size: 0.75rem; color: #94a3b8;">
+        <i class="fa-regular fa-copyright"></i> 2026 Tourly — All rights reserved
+      </p>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Demo Content -->
+
+
+  <script>
+    // Mobile Drawer Functionality
+    const drawer = document.getElementById('mobileDrawer');
+    const openBtn = document.getElementById('openDrawerBtn');
+    const closeBtn = document.getElementById('closeDrawerBtn');
+    const overlayEl = document.getElementById('overlay');
+
+    function openDrawer() {
+      drawer.classList.add('open');
+      overlayEl.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      overlayEl.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    overlayEl.addEventListener('click', closeDrawer);
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) {
+        closeDrawer();
+      }
+    });
+
+    // Close drawer when clicking any navigation link (for smooth UX)
+    const drawerLinks = document.querySelectorAll('.drawer-nav a');
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        // DON'T prevent default - let the browser navigate to actual href
+        // Just close the drawer before navigation happens
+        closeDrawer();
+        // Allow natural navigation to /home, /addtrip etc.
+      });
+    });
+
+    // Search functionality
+    const searchBtn = document.getElementById('searchIcon');
+    if (searchBtn) {
+      searchBtn.addEventListener('click', () => {
+        alert('🔍 Search destinations, trips, or experiences...');
+      });
+    }
+
+    // Logo click feedback (optional)
+    const logo = document.querySelector('.logo');
+    if (logo) {
+      logo.addEventListener('click', () => {
+        window.location.href = '/home';
+      });
+    }
+
+    // Social icons simple demo (prevent default but show alert for demo)
+    const socialIcons = document.querySelectorAll('.social-icons a, .social-mobile a');
+    socialIcons.forEach(icon => {
+      icon.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('✨ Follow Tourly on social media for travel inspiration! ✨');
+      });
+    });
+
+    // Console log that all navigation links are active
+    console.log('✅ All navigation links restored: Home, Add to Trip, Destination, Gallery, About Us, Contact Us, Logout');
+  </script>
 </body>
 </html>

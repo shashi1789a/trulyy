@@ -28,11 +28,11 @@ const productSchema = new mongoose.Schema({
     coordinates: {
       lat: {
         type: Number,
-        // required: true
+       
       },
       lng: {
         type: Number,
-        // required: true,
+      
       },
     },
   },
@@ -43,19 +43,19 @@ const productSchema = new mongoose.Schema({
   },
 
   openingHours: {
-    open: String, // e.g. "08:00 AM"
-    close: String, // e.g. "06:00 PM"
+    open: String, 
+    close: String, 
   },
 
   addedBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Owner', // Or 'Admin' if submitted by admin
+    ref: 'Owner', 
   },
 
   nearbyTransport: [
     {
       type: {
-        type: String, // e.g., 'bus', 'train', 'auto'
+        type: String, 
       },
       description: String,
       distanceKm: Number,
@@ -88,7 +88,7 @@ const productSchema = new mongoose.Schema({
 
   weatherInfo: {
     temperature: Number,
-    condition: String, // e.g., 'Sunny', 'Cloudy'
+    condition: String, 
     lastUpdated: Date,
   },
 

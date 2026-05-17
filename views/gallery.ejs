@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2em;
+      color: #2c3e50;
+    }
+
+    .category-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .category-links a {
+      background-color: #2980b9;
+      color: #fff;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 0.95em;
+      transition: background-color 0.3s ease;
+    }
+
+    .category-links a:hover {
+      background-color: #1c5980;
+    }
+
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-info {
+      padding: 15px;
+    }
+
+    .gallery-info h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+
+    .gallery-info p {
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .upload-link {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .upload-link a {
+      color: #2980b9;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .upload-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Image Gallery</h1>
+
+  <div class="upload-link">
+    <a href="/gallery/upload">+ Upload New Image</a>
+  </div>
+
+  <!-- Category Filter Links -->
+  <div class="category-links">
+    <a href="/gallery/historical">Historical</a>
+    <a href="/gallery/beach">Beach</a>
+    <a href="/gallery/waterfall">Waterfall</a>
+    <a href="/gallery/mountain">Mountain</a>
+    <a href="/gallery">All</a>
+  </div>
+
+  <% if (galleryImages && galleryImages.length > 0) { %>
+    <div class="gallery-container">
+      <% galleryImages.forEach(function(image) { %>
+        <div class="gallery-item">
+          <img 
+            src="<%= image.thumbnailUrl %>" 
+            alt="<%= image.altText || image.title || 'Gallery Image' %>" 
+            title="<%= image.title %>" 
+          />
+          <div class="gallery-info">
+            <h3><%= image.title || 'Untitled' %></h3>
+            <p><%= image.description || 'No description available.' %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p style="text-align:center;">No images found in the gallery.</p>
+  <% } %>
+</body>
+</html>

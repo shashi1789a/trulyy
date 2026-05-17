@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Upload Gallery Image</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      background-color: #f7f7f7;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin: 10px 0 5px;
+    }
+    input, textarea {
+      padding: 8px;
+      font-size: 1em;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 1.1em;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .message {
+      text-align: center;
+      margin: 10px 0;
+      color: green;
+    }
+    .error {
+      text-align: center;
+      margin: 10px 0;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Upload New Gallery Image</h1>
+
+  <% if (error && error.length > 0) { %>
+    <div class="error"><%= error %></div>
+  <% } %>
+
+  <% if (success && success.length > 0) { %>
+    <div class="message"><%= success %></div>
+  <% } %>
+
+  <form action="/gallery/upload" method="POST">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" placeholder="Image title" />
+
+    <label for="description">Description</label>
+    <textarea name="description" id="description" rows="3" placeholder="Image description"></textarea>
+
+    <label for="thumbnailUrl">Thumbnail Image URL</label>
+    <input type="text" name="thumbnailUrl" id="thumbnailUrl" placeholder="Thumbnail URL (required)" required />
+
+    <label for="largeImageUrl">Large Image URL</label>
+    <input type="text" name="largeImageUrl" id="largeImageUrl" placeholder="Large image URL (required)" required />
+
+    <label for="altText">Alt Text</label>
+    <input type="text" name="altText" id="altText" placeholder="Alternative text for image" />
+
+    <button type="submit">Upload Image</button>
+  </form>
+
+  <p style="text-align:center; margin-top: 20px;">
+    <a href="/gallery">Back to Gallery</a>
+  </p>
+</body>
+</html>

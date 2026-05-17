@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Favorite Trips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 font-sans text-gray-800">
+   <%- include('./partials/header') %>
+
+    <div class="max-w-6xl mx-auto px-4 py-10">
+      <h2 class="text-3xl font-bold mb-8 text-center">Your Trips</h2>
+
+      <% if (user && user.addtrip.length === 0) { %>
+        <div class="text-center py-20">
+          <h3 class="text-xl font-semibold">Your trip list is empty</h3>
+          <a href="/home" class="mt-4 inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+            Continue Exploring Places
+          </a>
+        </div>
+      <% } else { %>
+        <div class="grid gap-10 md:grid-cols-2">
+          <% user.addtrip.forEach(product => { %>
+            <div class="bg-white p-6 rounded-xl shadow-md flex gap-6 items-center">
+              <% if (product.image && product.image.length) { %>
+                <img 
+                  src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" 
+                  alt="<%= product.name %>" 
+                  class="w-32 h-32 object-cover rounded-md" 
+                />
+              <% } else { %>
+                <div class="w-32 h-32 bg-gray-300 rounded-md flex items-center justify-center text-gray-500">
+                  No Image
+                </div>
+              <% } %>
+
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold"><%= product.name %></h3>
+                <!-- <p class="text-gray-600 mt-1">
+                  <%= product.description.length > 150 ? product.description.substring(0, 150) + "..." : product.description %>
+                </p> -->
+                <p class="mt-1 text-sm text-gray-500">
+                  Category: <%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %>
+                </p>
+                <p class="mt-1 text-sm text-gray-500">
+                  Location: <%= product.location.city || "N/A" %>, 
+                  <%= product.location.state || "" %>, 
+                  <%= product.location.country || "" %>
+                </p>
+                 <a href="/removefromaddtrip/<%= product._id %>" class="inline-block mt-3 mr-4 text-red-600 hover:underline">
+                        Remove from Trip
+                  </a>
+                  <a href="/products/home/<%= product._id %>" class="inline-block mt-3 text-green-600 hover:underline">
+                   View Details
+                  </a>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+
+    <%- include('./partials/footer') %>
+  </body>
+</html>

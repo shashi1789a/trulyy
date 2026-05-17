@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explore Places</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/stylesheet/shop.css">
+  <style>
+     .body {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Background image layer */
+  .background-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .background-slide.active {
+    opacity: 1;
+  }
+
+  /* Section content */
+  .section {
+    position: relative;
+    color: white;
+    text-align: center;
+    top: 25%;
+    transform: translateY(-50%);
+    padding: 0 20px;
+    z-index: 10;
+  }
+
+  .section h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section button {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    /* padding: 12px 25px 12px 25px; */
+    margin: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+
+  .section button:hover {
+    background-color: #3730a3;
+  }
+
+  @media (max-width: 768px) {
+    .section h1 {
+      font-size: 2rem;
+    }
+    .section p {
+      font-size: 1rem;
+    }
+  }
+  </style>
+</head>
+<body>
+  <%- include('./partials/header') %>
+  <div class="body">
+  <!-- 10 background images -->
+  <img class="background-slide active" src="https://picsum.photos/id/1018/1920/1080" alt="">
+  <img class="background-slide" src="https://picsum.photos/id/1015/1920/1080" alt="">
+  <img class="background-slide" src="https://picsum.photos/id/1016/1920/1080" alt="">
+  <img class="background-slide" src="https://picsum.photos/id/1020/1920/1080" alt="">
+  <img class="background-slide" src="https://picsum.photos/id/1024/1920/1080" alt="">
+  <img class="background-slide" src="https://picsum.photos/id/1027/1920/1080" alt="">
+  <img class="background-slide" src="https://picsum.photos/id/1035/1920/1080" alt="">
+  <img class="background-slide" src="https://picsum.photos/id/1038/1920/1080" alt="">
+  <img class="background-slide" src="https://picsum.photos/id/1043/1920/1080" alt="">
+  <img class="background-slide" src="https://picsum.photos/id/1050/1920/1080" alt="">
+
+  <!-- Content -->
+  <div class="section">
+    <h1>JOURNEY TO EXPLORE WORLD</h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat eaque expedita iusto assumenda vel hic amet dolore ipsum minima nulla?</p>
+    <button>LEARN MORE</button>
+    <button>BOOK NOW</button>
+  </div>
+</div>
+
+<section class="py-12 px-6 text-center bg-white">
+  <h2 class="text-3xl font-bold mb-8 text-gray-800">Popular Categories</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+    <div class="bg-gray-200 p-6 rounded-lg text-lg font-semibold shadow-xl border border-gray-300 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
+      <a href="historical.html" class="block">🏰 Historical Places</a>
+    </div>
+    <div class="bg-gray-200 p-6 rounded-lg text-lg font-semibold shadow-xl border border-gray-300 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
+      <a href="beaches.html" class="block">🏖️ Beaches</a>
+    </div>
+    <div class="bg-gray-200 p-6 rounded-lg text-lg font-semibold shadow-xl border border-gray-300 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
+      🌊 Waterfalls
+    </div>
+    <div class="bg-gray-200 p-6 rounded-lg text-lg font-semibold shadow-xl border border-gray-300 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
+      🛕 Mountain
+    </div>
+  </div>
+</section>
+
+<!-- Owner Submitted Places -->
+<!-- Section Title -->
+<h1 class="text-4xl font-bold text-center  text-gray-900 bg-white py-6 px-4 rounded-lg shadow-md">
+  Owner Submitted Places
+</h1>
+
+
+<!-- White background container for grid and cards -->
+<div class="bg-white py-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 px-6 pb-16 max-w-7xl mx-auto">
+    <% Product.forEach(function(product) { %>
+      <div class="bg-white rounded-xl border border-gray-300 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 cursor-pointer overflow-hidden">
+        <% if (product.image) { %>
+          <img src="data:image/jpeg;base64,<%= Buffer.from(product.image).toString('base64') %>"
+               alt="<%= product.name %>"
+               class="w-full h-52 object-cover rounded-t-xl"/>
+        <% } else { %>
+          <img src="/images/default.jpg"
+               alt="Default Image"
+               class="w-full h-52 object-cover rounded-t-xl"/>
+        <% } %>
+
+        <div class="p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-3"><%= product.name %></h2>
+
+          <p class="text-sm text-gray-600 mb-1 flex items-center gap-1">
+            <i class="fa-solid fa-location-dot text-rose-500"></i>
+            <span><%= product.location.city %>, <%= product.location.country %></span>
+          </p>
+
+          <p class="text-sm text-gray-600 mb-1 flex items-center gap-1">
+            <i class="fa-solid fa-tags text-teal-600"></i>
+            <span>Category: <%= product.category %></span>
+          </p>
+
+          <p class="text-sm text-gray-600 mb-1 flex items-center gap-1">
+            <i class="fa-solid fa-clock text-yellow-500"></i>
+            <span><%= product.openingHours.open %> - <%= product.openingHours.close %></span>
+          </p>
+
+          <p class="text-sm text-gray-600 mb-5 flex items-center gap-1">
+            <i class="fa-solid fa-ticket text-green-600"></i>
+            <span>Entry Fee: ₹<%= product.entryFee %></span>
+          </p>
+
+          <form action="/addtrip/<%= product._id %>" method="POST" class="mt-2">
+            <button type="submit" class="w-full py-2 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition">
+              <i class="fa-solid fa-plus mr-1"></i>Add to Trip
+            </button>
+          </form>
+
+          <a href="/products/home/<%= product._id %>"
+             class="block text-center mt-3 py-2 bg-red-500 text-white font-semibold rounded-full hover:bg-red-700 transition">
+            View Details
+          </a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<!-- Map Section -->
+<section class="py-12 px-6 bg-white text-center shadow-2xl rounded-lg max-w-9xl mx-auto">
+  <h2 class="text-3xl font-bold mb-8 text-gray-800">Find Locations on Map</h2>
+  <div>
+    <iframe src="https://maps.google.com/maps?q=India&t=&z=4&ie=UTF8&iwloc=&output=embed"
+            allowfullscreen
+            class="w-full h-[420px] rounded-lg shadow-2xl border-0 transition-transform hover:scale-105 duration-300"></iframe>
+  </div>
+</section>
+
+
+<%- include('./partials/footer') %>
+<script src="/javascript/shop.js"></script>
+
+
+</body>
+</html>

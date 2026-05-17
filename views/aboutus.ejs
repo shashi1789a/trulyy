@@ -4,13 +4,229 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us - Travel & Tourism</title>
-  <link rel="stylesheet" href="/stylesheet/aboutus.css" />
+  <style>
+    /* Reset and base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f0f4f8;
+      color: #2e3a59;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 70px; /* header space */
+    }
+
+    /* Header placeholder */
+    .fixed {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: #ffffffdd;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 999;
+      backdrop-filter: saturate(180%) blur(8px);
+    }
+
+    /* Hero section with subtle animated gradient text */
+    .hero {
+      width: 100%;
+      background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+      padding: 5rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+      box-shadow: inset 0 -60px 80px -20px rgba(0,0,0,0.2);
+    }
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(45deg, #ffb347, #ffcc33);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 5s ease infinite alternate;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      font-weight: 500;
+      max-width: 600px;
+      line-height: 1.4;
+      opacity: 0.85;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      width: 90%;
+      margin: 4rem auto 6rem auto;
+    }
+
+    /* About heading */
+    .about h2 {
+      font-size: 2.8rem;
+      color: #334155;
+      text-align: center;
+      margin-bottom: 1rem;
+      position: relative;
+      font-weight: 700;
+    }
+    /* underline effect */
+    .about h2::after {
+      content: '';
+      width: 6rem;
+      height: 4px;
+      background: #ff9a3c;
+      display: block;
+      margin: 0.6rem auto 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px #ff9a3c88;
+      transition: width 0.3s ease;
+    }
+    .about h2:hover::after {
+      width: 8rem;
+    }
+
+    .about p {
+      text-align: center;
+      max-width: 750px;
+      margin: 1rem auto 3rem auto;
+      font-size: 1.15rem;
+      color: #475569;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      line-height: 1.65;
+      user-select: none;
+    }
+
+    /* Features grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.8rem;
+    }
+
+    /* Feature card */
+    .feature-card {
+      background: linear-gradient(145deg, #ffffff, #e0e7ff);
+      border-radius: 20px;
+      padding: 2.2rem 1.8rem;
+      box-shadow:
+        6px 6px 12px #bebebe,
+        -6px -6px 12px #ffffff;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Hover effect with subtle 3D lift */
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow:
+        12px 12px 20px #bebebe,
+        -12px -12px 20px #ffffff;
+    }
+    /* Icon style */
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #2563eb;
+      user-select: none;
+    }
+    .feature-card p {
+      font-size: 1rem;
+      color: #334155;
+      user-select: text;
+      line-height: 1.45;
+    }
+
+    /* Floating animated circles decoration on cards */
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: #60a5fa33;
+      border-radius: 50%;
+      top: -40px;
+      right: -40px;
+      filter: blur(20px);
+      animation: floatAround 6s ease-in-out infinite;
+      z-index: 0;
+    }
+    /* Each card gets different animation delay */
+    .feature-card:nth-child(2)::before {
+      animation-delay: 2s;
+      background: #a78bfa33;
+    }
+    .feature-card:nth-child(3)::before {
+      animation-delay: 4s;
+      background: #f8717133;
+    }
+    .feature-card:nth-child(4)::before {
+      animation-delay: 1s;
+      background: #34d39933;
+    }
+
+    @keyframes floatAround {
+      0%, 100% { transform: translate(0, 0) }
+      50% { transform: translate(15px, 15px) }
+    }
+
+    /* Footer placeholder style */
+    footer {
+      width: 100%;
+      padding: 2rem 1rem;
+      background: #334155;
+      color: white;
+      text-align: center;
+      font-size: 0.9rem;
+      user-select: none;
+      box-shadow: inset 0 4px 10px #1e293bcc;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      .about h2 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <%- include('./partials/headeroth') %>
+
+  <div class="fixed top-0 left-0 w-full z-50">
+    <%- include('./partials/header') %>
+  </div>
 
   <section class="hero">
-    <div class="container hero-content">
+    <div class="container">
       <h2>Discover, Explore, Experience</h2>
       <p>Your ultimate companion for unforgettable journeys.</p>
     </div>

@@ -1,54 +1,556 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Account</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100 font-sans text-gray-800">
-    <%- include('./partials/headeroth') %>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Account - Ultra Profile</title>
+  <link href="https://cdn.tailwindcss.com" rel="stylesheet" />
+ <style>
+/* Background gradient animation */
+@keyframes bgGradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+body {
+  background: linear-gradient(-45deg, #4f46e5, #3b82f6, #9333ea, #8b5cf6);
+  background-size: 400% 400%;
+  animation: bgGradientMove 15s ease infinite;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #1e3a8a;
+}
 
-    <div class="max-w-4xl mx-auto px-4 py-10">
-      <h2 class="text-3xl font-bold mb-8 text-center">My Account</h2>
+/* Particle background container */
+#particles {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
 
-      <div class="bg-white p-6 rounded-xl shadow-md">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Account Information</h3>
-            <p><span class="font-semibold">Name:</span> <%= user.fullname %></p>
-            <p><span class="font-semibold">Email:</span> <%= user.email %></p>
-            <p><span class="font-semibold">Contact:</span> <%= user.contact %></p>
-          </div>
+/* Fade & slide animation */
+.fade-slide-up {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeSlideUpAnim 0.8s ease forwards;
+}
+@keyframes fadeSlideUpAnim {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Profile Picture</h3>
-            <% if (user.picture) { %>
-              <img src="<%= user.picture %>" alt="Profile" class="w-32 h-32 rounded-full object-cover border-2 border-gray-300" />
-            <% } else { %>
-              <div class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
-                No Image
-              </div>
-            <% } %>
-          </div>
-        </div>
+/* Animated underline */
+.main-title {
+  position: relative;
+  display: inline-block;
+  cursor: default;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #4f46e5;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.main-title::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  bottom: -10px;
+  left: 0;
+  background: linear-gradient(90deg, #4f46e5, #3b82f6);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  border-radius: 4px;
+}
+.main-title:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
-        <div class="mt-10">
-          <h3 class="text-xl font-semibold mb-4">My Orders</h3>
-          <% if (user.orders.length === 0) { %>
-            <p class="text-gray-600">You have no orders yet.</p>
+/* Profile pic pulse */
+.profile-pic-pulse:hover {
+  animation: pulseGlow 1.5s infinite;
+}
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 15px 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+/* Neumorphism style for cards & buttons */
+.neumorph {
+  background: #f0f0ff;
+  border-radius: 15px;
+  box-shadow:
+    8px 8px 15px #bebebe,
+    -8px -8px 15px #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+.neumorph:hover {
+  box-shadow:
+    inset 4px 4px 8px #bebebe,
+    inset -4px -4px 8px #ffffff;
+}
+
+/* Sticky profile summary bar */
+#sticky-profile {
+  position: sticky;
+  top: 4rem;
+  background: #f9f9ffcc;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  box-shadow: 0 8px 16px rgba(100,100,255,0.15);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  margin-bottom: 3rem;
+  cursor: default;
+  user-select: none;
+}
+#sticky-profile img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #6366f1;
+  object-fit: cover;
+  box-shadow: 0 0 10px #6366f1aa;
+}
+#sticky-profile .name {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #4f46e5;
+}
+
+/* Scroll nav */
+#profile-nav {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 100;
+  padding: 0.5rem 2rem;
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  user-select: none;
+}
+#profile-nav a {
+  text-decoration: none;
+  color: #6366f1;
+  font-weight: 600;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+#profile-nav a:hover, #profile-nav a.active {
+  background: #6366f1;
+  color: white;
+  box-shadow: 0 4px 8px rgba(99,102,241,0.5);
+}
+
+/* Profile content layout */
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+@media (min-width: 768px) {
+  .profile-content {
+    flex-direction: row;
+  }
+}
+
+/* Profile pic */
+.profile-pic-wrapper {
+  flex-shrink: 0;
+  padding: 0.25rem;
+  background: linear-gradient(to top right, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+.profile-pic {
+  width: 176px;
+  height: 176px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+.placeholder-pic {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #d1d5db;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  user-select: none;
+}
+.placeholder-pic.large {
+  width: 176px;
+  height: 176px;
+  font-size: 3rem;
+}
+
+/* Profile details */
+.profile-details {
+  flex: 1;
+  color: #3730a3;
+}
+.fullname {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-shadow: 0 1px 2px rgba(75, 0, 255, 0.15);
+}
+.username {
+  font-weight: 700;
+  color: #6366f1;
+  margin-bottom: 1rem;
+}
+
+/* Info grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem 3rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+@media(min-width: 640px) {
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #4f46e5;
+  cursor: help;
+  user-select: text;
+}
+.info-item .icon {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* Button ripple */
+.btn-primary {
+  background-color: #6366f1;
+  color: white;
+  font-weight: 700;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 15px rgba(99, 102, 241, 0.35);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary:hover {
+  background-color: #4f46e5;
+}
+.btn-ripple::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.6s ease, opacity 1s ease;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  z-index: 0;
+}
+.btn-ripple:active::after {
+  transform: scale(1);
+  opacity: 1;
+  transition: 0s;
+  top: 50%;
+  left: 50%;
+}
+
+/* Stats section */
+.stats-section {
+  background: white;
+  padding: 3rem 4rem;
+  border-radius: 1.5rem;
+  max-width: 700px;
+  margin: auto;
+}
+.stats-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #4f46e5;
+  margin-bottom: 2rem;
+}
+
+/* Progress bars */
+.progress-container {
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 16px;
+  margin-top: 0.5rem;
+  box-shadow: inset 2px 2px 5px #bbb;
+}
+.progress-bar {
+  height: 16px;
+  background: linear-gradient(90deg, #6366f1, #4f46e5);
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+.progress-label {
+  font-weight: 700;
+  color: #5b21b6;
+  cursor: help;
+  user-select: none;
+}
+
+/* Orders section */
+.orders-section {
+  background: white;
+  padding: 3rem 4rem;
+  border-radius: 1.5rem;
+  max-width: 900px;
+  margin: 3rem auto 0 auto;
+}
+.orders-title {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: #4f46e5;
+  margin-bottom: 2rem;
+}
+
+/* Flip card styles */
+.orders-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.flip-card {
+  background: #f9f9ff;
+  border-radius: 1rem;
+  box-shadow:
+    8px 8px 15px #bebebe,
+    -8px -8px 15px #ffffff;
+  cursor: pointer;
+  perspective: 1000px;
+  outline: none;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  text-align: center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+.flip-card:focus .flip-inner,
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #3730a3;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.flip-front {
+  background: white;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+.flip-back {
+  background: #6366f1;
+  color: white;
+  transform: rotateY(180deg);
+  box-shadow: 0 0 15px #4f46e5aa;
+}
+
+
+ </style>
+</head>
+<body>
+
+  <!-- Particles canvas -->
+  <canvas id="particles"></canvas>
+
+  <!-- Header -->
+  <div class="fixed top-0 left-0 w-full z-50 shadow-md bg-white">
+    <%- include('./partials/header') %>
+  </div>
+
+  <!-- Main Container -->
+  <div class="max-w-3xl mx-auto px-6 py-16 pt-28 fade-slide-up">
+
+    <!-- Sticky Profile Summary -->
+    <div id="sticky-profile" class="neumorph shadow-md mb-12 flex items-center gap-4 px-6 py-4 rounded-lg bg-white">
+      <% if (user.picture) { %>
+        <img src="<%= user.picture %>" alt="Sticky Profile Picture" class="w-12 h-12 rounded-full object-cover" />
+      <% } else { %>
+        <div class="placeholder-pic w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-semibold">N/A</div>
+      <% } %>
+      <div class="name font-semibold text-lg text-gray-900"><%= user.fullname || 'No Name' %></div>
+    </div>
+
+    <!-- Profile Info Section -->
+    <section id="profile-info" class="bg-white rounded-3xl shadow-2xl p-12 neumorph mb-16">
+      <h1 class="main-title select-none text-3xl font-bold mb-8 text-gray-900">My Profile</h1>
+      <div class="profile-content flex flex-col md:flex-row items-center md:items-start gap-10">
+
+        <!-- Profile Picture -->
+        <div class="profile-pic-wrapper profile-pic-pulse rounded-full overflow-hidden w-40 h-40 shadow-lg">
+          <% if (user.picture) { %>
+            <img src="<%= user.picture %>" alt="Profile Picture" class="profile-pic w-full h-full object-cover" />
           <% } else { %>
-            <ul class="space-y-4">
-              <% user.orders.forEach((order, index) => { %>
-                <li class="bg-gray-50 p-4 rounded-lg border">
-                  <p><span class="font-semibold">Order #<%= index + 1 %>:</span> <%= order %></p>
-                </li>
-              <% }) %>
-            </ul>
+            <div class="placeholder-pic large w-full h-full flex items-center justify-center bg-gray-200 text-gray-500 font-semibold text-xl rounded-full">
+              N/A
+            </div>
           <% } %>
         </div>
+
+        <!-- Profile Details -->
+        <div class="profile-details select-text flex-1 space-y-4">
+          <h2 class="fullname text-2xl font-semibold text-gray-900"><%= user.fullname || 'No Full Name' %></h2>
+          <p class="username text-indigo-600 text-lg">@<%= user.username || 'username' %></p>
+
+          <div class="info-grid grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <div class="info-item flex items-center gap-3" title="Your registered email address">
+              <svg class="icon email-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12H8m0 0H6a2 2 0 00-2 2v6h16v-6a2 2 0 00-2-2h-2z"/></svg>
+              <span><strong>Email:</strong> <%= user.email || 'Not Provided' %></span>
+            </div>
+            <div class="info-item flex items-center gap-3" title="Your contact phone number">
+              <svg class="icon phone-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.499 4.497a1 1 0 01-.217 1.09L8.5 11.5a11.042 11.042 0 006.5 6.5l1.25-1.25a1 1 0 011.09-.217l4.498 1.5a1 1 0 01.683.949V19a2 2 0 01-2 2h-1C7.925 21 3 16.075 3 10V5z"/></svg>
+              <span><strong>Contact:</strong> <%= user.contact || 'Not Provided' %></span>
+            </div>
+            <div class="info-item flex items-center gap-3" title="Date you were born">
+              <svg class="icon dob-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2v-7H3v7a2 2 0 002 2z"/></svg>
+              <span><strong>DOB:</strong> <%= user.dob ? new Date(user.dob).toLocaleDateString() : 'Not Provided' %></span>
+            </div>
+            <div class="info-item flex items-center gap-3" title="Your gender">
+              <svg class="icon gender-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 10h4.586a1 1 0 010 1.414l-6.586 6.586a1 1 0 01-1.414 0L6 14m8-4v6"/></svg>
+              <span><strong>Gender:</strong> <%= user.gender || 'Not Specified' %></span>
+            </div>
+            <div class="info-item flex items-center gap-3 col-span-full md:col-span-2" title="Your shipping address">
+              <svg class="icon address-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18M3 18h18"/></svg>
+              <span><strong>Address:</strong> <%= user.address || 'Not Provided' %></span>
+            </div>
+            <div class="info-item flex items-center gap-3" title="When you joined our community">
+              <svg class="icon join-icon w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3"/></svg>
+              <span><strong>Member Since:</strong> <%= user.joinDate ? new Date(user.joinDate).toLocaleDateString() : 'Unknown' %></span>
+            </div>
+          </div>
+
+          <button class="btn-primary btn-ripple edit-btn select-none mt-8 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300">
+            Edit Profile
+          </button>
+        </div>
       </div>
-    </div>
-    <%- include('./partials/footer') %>
-  </body>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section neumorph p-8 rounded-3xl shadow-2xl bg-white mb-16">
+      <h2 class="stats-title select-none cursor-pointer text-2xl font-semibold text-gray-900 mb-6">Profile Stats</h2>
+      <div class="stats-content space-y-8">
+        <!-- Example progress bar -->
+        <div>
+          <p class="progress-label font-medium text-gray-700" title="How complete your profile is">
+            Profile Completeness
+          </p>
+          <div class="progress-container bg-gray-200 rounded-full h-4 mt-2">
+            <div class="progress-bar bg-indigo-600 h-4 rounded-full" style="width: 80%;"></div>
+          </div>
+        </div>
+        <div>
+          <p class="progress-label font-medium text-gray-700" title="Your order fulfillment rate">
+            Orders Completed
+          </p>
+          <div class="progress-container bg-gray-200 rounded-full h-4 mt-2">
+            <div class="progress-bar bg-indigo-600 h-4 rounded-full" style="width: 92%;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Orders Section (example of flip cards) -->
+  <section id="orders" class="orders-section neumorph">
+      <h2 class="orders-title select-none cursor-pointer">Recent Visit</h2>
+      <div class="orders-grid">
+        <!-- Example flip card -->
+        <div class="flip-card" tabindex="0" aria-label="Order details card">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <p><strong>Order #12345</strong></p>
+              <p>Placed: 2025-05-01</p>
+              <p>Status: Delivered</p>
+            </div>
+            <div class="flip-back">
+              <p>Items: 3</p>
+              <p>Total: ₹2,500</p>
+              <p>Delivery Address: 123 Street, City</p>
+            </div>
+          </div>
+        </div>
+        <!-- Add more flip cards as needed -->
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Smooth scroll for nav links (if you have nav in profile page)
+    document.querySelectorAll('#profile-nav a').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelectorAll('#profile-nav a').forEach(a => a.classList.remove('active'));
+        anchor.classList.add('active');
+        document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Flip card toggle (basic example)
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const inner = card.querySelector('.flip-inner');
+        inner.classList.toggle('rotate-y-180');
+      });
+    });
+  </script>
+
+</body>
+
 </html>

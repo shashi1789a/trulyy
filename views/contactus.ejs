@@ -1,47 +1,539 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us - TravelExplorer</title>
-  <link rel="stylesheet" href="/stylesheet/contactus.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>TravelWorld | Let's Connect – Your Journey Begins</title>
+  <!-- Tailwind + Google Fonts + Font Awesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Custom theme - elegant travel brand */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+      background: #FFFFFF;
+      color: #1A2C3E;
+      overflow-x: hidden;
+    }
+
+    /* Gradient hero with subtle pattern */
+    .hero-elegant {
+      background: linear-gradient(135deg, #0F2B3D 0%, #1B4F6E 50%, #2D6A4F 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-elegant::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.05"><path fill="white" d="M100 0L130 70L200 80L150 130L170 200L100 160L30 200L50 130L0 80L70 70L100 0Z"/></svg>');
+      background-size: 60px;
+      pointer-events: none;
+    }
+
+    /* Premium glass card */
+    .glass-premium {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(45, 106, 79, 0.15);
+      transition: all 0.3s ease;
+    }
+    .glass-premium:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Elegant input fields */
+    .elegant-field {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .elegant-field input,
+    .elegant-field textarea,
+    .elegant-field select {
+      width: 100%;
+      background: #F9FAFB;
+      border: 2px solid #E5E9F0;
+      border-radius: 1rem;
+      padding: 0.9rem 1rem 0.9rem 3rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.25s;
+      font-family: 'Inter', sans-serif;
+      color: #1A2C3E;
+    }
+    .elegant-field input:focus,
+    .elegant-field textarea:focus,
+    .elegant-field select:focus {
+      border-color: #2D6A4F;
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.1);
+      background: white;
+    }
+    .elegant-field label {
+      position: absolute;
+      left: 3rem;
+      top: 0.9rem;
+      color: #6B7A8A;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      pointer-events: none;
+      font-size: 0.9rem;
+      background: transparent;
+    }
+    .elegant-field input:focus ~ label,
+    .elegant-field input:not(:placeholder-shown) ~ label,
+    .elegant-field textarea:focus ~ label,
+    .elegant-field textarea:not(:placeholder-shown) ~ label,
+    .elegant-field select:focus ~ label,
+    .elegant-field select:not([value=""]) ~ label {
+      top: -0.7rem;
+      left: 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #2D6A4F;
+      background: white;
+      padding: 0 0.6rem;
+      border-radius: 20px;
+    }
+    .field-icon {
+      position: absolute;
+      left: 1rem;
+      top: 0.95rem;
+      color: #2D6A4F;
+      font-size: 1rem;
+    }
+
+    /* CTA Button */
+    .btn-elegant {
+      background: linear-gradient(105deg, #2D6A4F, #1B4F6E);
+      border: none;
+      border-radius: 2rem;
+      padding: 0.9rem 2rem;
+      font-weight: 700;
+      color: white;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(45, 106, 79, 0.3);
+      cursor: pointer;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 1rem;
+    }
+    .btn-elegant:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(45, 106, 79, 0.4);
+      background: linear-gradient(105deg, #1B4F6E, #2D6A4F);
+    }
+
+    /* Contact info cards */
+    .info-card-modern {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFE 100%);
+      border-radius: 1.2rem;
+      padding: 1rem 1.2rem;
+      transition: all 0.25s;
+      border: 1px solid #E8EDF2;
+    }
+    .info-card-modern:hover {
+      transform: translateX(6px);
+      border-color: #2D6A4F;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    /* Social icons */
+    .social-circle {
+      width: 44px;
+      height: 44px;
+      background: #F0F4F8;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #2D6A4F;
+      font-size: 1.2rem;
+      transition: all 0.25s;
+    }
+    .social-circle:hover {
+      background: #2D6A4F;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Map container */
+    .map-elegant {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+      border: 2px solid rgba(45, 106, 79, 0.2);
+      transition: all 0.3s;
+    }
+    .map-elegant:hover {
+      border-color: #2D6A4F;
+      box-shadow: 0 25px 40px -12px rgba(45, 106, 79, 0.25);
+    }
+
+    /* Checkbox styling */
+    .checkbox-custom {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .checkbox-custom input {
+      width: 18px;
+      height: 18px;
+      accent-color: #2D6A4F;
+      cursor: pointer;
+    }
+
+    /* Error & success */
+    .error-text {
+      color: #E53E3E;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 5px;
+      margin-left: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .success-message {
+      background: #2D6A4F;
+      border-radius: 1rem;
+      padding: 0.8rem 1rem;
+      color: white;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 1rem;
+      animation: slideIn 0.4s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(15px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* Stats badges */
+    .stat-badge {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .glass-premium { margin: 0 1rem; }
+      .elegant-field input, .elegant-field textarea { padding-left: 2.5rem; }
+    }
+  </style>
 </head>
 <body>
-    <%- include('./partials/headeroth') %>
-  <section class="contact-section">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <div class="contact-grid">
-        <form class="contact-form" onsubmit="return submitForm(event)">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <input type="text" placeholder="Subject" />
-          <textarea rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
 
-        <div class="map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.902742161644!2d77.20902161498102!3d28.613939284246586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd8a3a0a4f29%3A0x38f5be8dc83b6cf1!2sIndia%20Gate!5e0!3m2!1sen!2sin!4v1680000000000"
-            width="100%"
-            height="100%"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-          ></iframe>
+  <!-- EJS Header -->
+  <%- include('./partials/header') %>
+
+  <!-- Main Hero Section -->
+  <section class="hero-elegant w-full py-20 px-5 md:px-8 relative">
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Left Column - Inspiring Content -->
+        <div class="text-white space-y-6">
+          <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur rounded-full px-5 py-2 text-sm font-semibold">
+            <i class="fas fa-headset text-emerald-300"></i>
+            <span>Premium Support · 24/7</span>
+          </div>
+          
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            Let's plan your
+            <span class="text-emerald-300 block mt-2">next adventure</span>
+          </h1>
+          
+          <p class="text-white/85 text-lg max-w-md leading-relaxed">
+            From hidden gems to iconic landmarks — our travel experts craft personalized journeys. Reach out and let the world become your story.
+          </p>
+          
+          <!-- Contact quick info -->
+          <div class="flex flex-col sm:flex-row gap-5 pt-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center">
+                <i class="fas fa-phone-alt text-emerald-300"></i>
+              </div>
+              <div>
+                <p class="text-xs opacity-80">Call Anytime</p>
+                <p class="font-bold text-lg">+91 98765 43210</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center">
+                <i class="fas fa-envelope text-emerald-300"></i>
+              </div>
+              <div>
+                <p class="text-xs opacity-80">Email Us</p>
+                <p class="font-bold text-lg">hello@travelworld.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Stats Row -->
+          <div class="flex flex-wrap gap-4 pt-4 border-t border-white/20 max-w-md">
+            <div class="stat-badge"><i class="fas fa-globe-asia mr-1"></i> 85+ Destinations</div>
+            <div class="stat-badge"><i class="fas fa-smile mr-1"></i> 12k+ Happy Travelers</div>
+            <div class="stat-badge"><i class="fas fa-clock mr-1"></i> Fast Response</div>
+          </div>
+        </div>
+
+        <!-- Right Column - Contact Form Glass Card -->
+        <div class="glass-premium p-6 md:p-8">
+          <div class="flex items-center gap-3 border-b border-gray-200 pb-4 mb-5">
+            <i class="fas fa-paper-plane text-2xl text-emerald-600"></i>
+            <h2 class="text-2xl font-bold text-gray-800">Send us a message</h2>
+            <span class="bg-emerald-100 text-emerald-700 text-xs px-3 py-1 rounded-full ml-auto">We reply fast</span>
+          </div>
+          
+          <form id="contactForm" novalidate>
+            <div class="elegant-field">
+              <input type="text" id="fullName" placeholder=" " required>
+              <label>Your full name</label>
+              <i class="fas fa-user field-icon"></i>
+              <div id="nameError" class="error-text hidden"><i class="fas fa-exclamation-circle"></i> Name is required</div>
+            </div>
+
+            <div class="elegant-field">
+              <input type="email" id="emailAddr" placeholder=" " required>
+              <label>Email address</label>
+              <i class="fas fa-envelope field-icon"></i>
+              <div id="emailError" class="error-text hidden"><i class="fas fa-exclamation-circle"></i> Valid email required</div>
+            </div>
+
+            <div class="elegant-field">
+              <input type="tel" id="phoneNumber" placeholder=" ">
+              <label>Phone number (optional)</label>
+              <i class="fas fa-mobile-alt field-icon"></i>
+            </div>
+
+            <div class="elegant-field">
+              <select id="travelInterest" class="appearance-none">
+                <option value="" disabled selected></option>
+                <option value="general">🌍 General Inquiry</option>
+                <option value="honeymoon">💑 Honeymoon Package</option>
+                <option value="adventure">⛰️ Adventure Tour</option>
+                <option value="family">👨‍👩‍👧 Family Vacation</option>
+                <option value="corporate">🏢 Corporate / MICE</option>
+              </select>
+              <label>What brings you here?</label>
+              <i class="fas fa-compass field-icon"></i>
+            </div>
+
+            <div class="elegant-field">
+              <textarea id="travelMsg" rows="4" placeholder=" " required></textarea>
+              <label>Tell us about your dream trip</label>
+              <i class="fas fa-comment-dots field-icon"></i>
+              <div id="msgError" class="error-text hidden"><i class="fas fa-exclamation-circle"></i> Message cannot be empty</div>
+            </div>
+
+            <div class="flex justify-between items-center mb-6">
+              <label class="checkbox-custom">
+                <input type="checkbox" id="newsletterSignup" checked>
+                <span class="text-sm text-gray-600"><i class="fas fa-envelope-open-text text-emerald-600 mr-1"></i> Get travel deals & guides</span>
+              </label>
+              <div class="text-xs text-gray-400"><i class="fas fa-lock"></i> Privacy protected</div>
+            </div>
+
+            <button type="submit" id="submitContactBtn" class="btn-elegant">
+              <i class="fas fa-location-dot"></i> Send Message
+              <i class="fas fa-arrow-right text-sm"></i>
+            </button>
+            
+            <div id="successMessage" class="hidden success-message">
+              <i class="fas fa-check-circle text-xl"></i>
+              <span>✨ Message sent! Our travel expert will reach out within 2 hours.</span>
+            </div>
+          </form>
+
+          <!-- Social Links -->
+          <div class="flex justify-center gap-3 mt-6 pt-3 border-t border-gray-100">
+            <a href="#" class="social-circle"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-circle"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-circle"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-circle"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <%- include('./partials/footer') %>
-  
 
+  <!-- Office Info & Map Section -->
+  <section class="max-w-7xl mx-auto px-5 py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-stretch">
+      
+      <!-- Office Details -->
+      <div class="space-y-7">
+        <div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-1.5 rounded-full text-sm font-semibold">
+          <i class="fas fa-building"></i> Visit Our Studio
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Meet us at <span class="text-emerald-600">TravelWorld Hub</span></h2>
+        <p class="text-gray-500 leading-relaxed">Our doors are always open for travel enthusiasts. Drop by for a cup of coffee and let's co-create your next journey.</p>
+        
+        <div class="space-y-3">
+          <div class="info-card-modern">
+            <div class="flex gap-4 items-start">
+              <i class="fas fa-map-pin text-emerald-600 text-xl mt-1"></i>
+              <div>
+                <strong class="block text-gray-800">Central Office</strong>
+                <span class="text-sm text-gray-500">Level 4, Wanderlust Towers, Connaught Place, New Delhi - 110001</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-card-modern">
+            <div class="flex gap-4 items-start">
+              <i class="fas fa-clock text-emerald-600 text-xl mt-1"></i>
+              <div>
+                <strong class="block text-gray-800">Opening Hours</strong>
+                <span class="text-sm text-gray-500">Mon–Sat: 9:30 AM – 7:00 PM | Sunday: 10 AM – 2 PM</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-card-modern">
+            <div class="flex gap-4 items-start">
+              <i class="fas fa-phone-alt text-emerald-600 text-xl mt-1"></i>
+              <div>
+                <strong class="block text-gray-800">Emergency Travel Support</strong>
+                <span class="text-sm text-gray-500">+91 99988 77665 (24/7 Helpline)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust Badge -->
+        <div class="flex items-center gap-4 pt-4">
+          <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center">
+            <i class="fas fa-shield-alt text-emerald-600 text-xl"></i>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-700">100% Secure & Trusted</p>
+            <p class="text-xs text-gray-400">Authorized by Ministry of Tourism, India</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Map -->
+      <div class="map-elegant h-[400px] lg:h-full min-h-[350px]">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.9129994789677!2d77.22418981492109!3d28.61303398238841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3e9b0be6c6b%3A0x2c9d8f5e6e8b1f1b!2sConnaught%20Place%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1700000000000" 
+          class="w-full h-full border-0" 
+          allowfullscreen="" 
+          loading="lazy"
+          title="TravelWorld Office Location">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote / Testimonial Strip -->
+  <div class="bg-gradient-to-r from-emerald-50 to-teal-50 py-12 px-5">
+    <div class="max-w-4xl mx-auto text-center">
+      <i class="fas fa-quote-left text-3xl text-emerald-400 opacity-60 mb-4"></i>
+      <p class="text-xl md:text-2xl font-medium text-gray-700 italic">"The world is a book, and those who do not travel read only one page. Let us help you write your story."</p>
+      <div class="flex flex-wrap justify-center gap-3 mt-6">
+        <span class="bg-white px-4 py-1.5 rounded-full text-sm shadow-sm"><i class="fas fa-passport text-emerald-600"></i> Visa Assistance</span>
+        <span class="bg-white px-4 py-1.5 rounded-full text-sm shadow-sm"><i class="fas fa-hotel text-emerald-600"></i> Curated Stays</span>
+        <span class="bg-white px-4 py-1.5 rounded-full text-sm shadow-sm"><i class="fas fa-map-marked-alt text-emerald-600"></i> Custom Itineraries</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EJS Footer -->
+  <%- include('./partials/footer') %>
+
+  <!-- Form Validation Script -->
   <script>
-    function submitForm(e) {
-      e.preventDefault();
-      alert("Thank you! Your message has been sent.");
-      return false;
-    }
+    (function() {
+      const form = document.getElementById('contactForm');
+      const nameInput = document.getElementById('fullName');
+      const emailInput = document.getElementById('emailAddr');
+      const msgTextarea = document.getElementById('travelMsg');
+      const nameErr = document.getElementById('nameError');
+      const emailErr = document.getElementById('emailError');
+      const msgErr = document.getElementById('msgError');
+      const submitBtn = document.getElementById('submitContactBtn');
+      const successDiv = document.getElementById('successMessage');
+
+      function isValidEmail(email) {
+        return /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(email);
+      }
+
+      function resetErrors() {
+        nameErr.classList.add('hidden');
+        emailErr.classList.add('hidden');
+        msgErr.classList.add('hidden');
+      }
+
+      function validateForm() {
+        let valid = true;
+        resetErrors();
+
+        const nameVal = nameInput.value.trim();
+        if (nameVal === '') {
+          nameErr.classList.remove('hidden');
+          valid = false;
+        }
+
+        const emailVal = emailInput.value.trim();
+        if (emailVal === '' || !isValidEmail(emailVal)) {
+          emailErr.classList.remove('hidden');
+          valid = false;
+        }
+
+        const msgVal = msgTextarea.value.trim();
+        if (msgVal === '') {
+          msgErr.classList.remove('hidden');
+          valid = false;
+        }
+        return valid;
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!validateForm()) {
+          const firstError = document.querySelector('.error-text:not(.hidden)');
+          if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+          successDiv.classList.remove('hidden');
+          form.reset();
+          setTimeout(() => {
+            successDiv.classList.add('hidden');
+          }, 5000);
+          resetErrors();
+        }, 1500);
+      });
+    })();
   </script>
 </body>
 </html>

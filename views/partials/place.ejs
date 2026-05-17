@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Explore Places</title>
+   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/stylesheet/place.css" />
 </head>
 <body>
@@ -60,15 +61,20 @@
                 Entry Fee: ₹<%= product.entryFee %>
               </p>
 
-              <a href="/addtocart/<%= product._id %>"
+              <!-- <a href="/addtocart/<%= product._id %>"
                  class="block text-center w-full py-2 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition">
                 <i class="fa-solid fa-plus mr-1"></i>Add to Trip
-              </a>
+              </a> -->
 
-              <a href="/products/shop/<%= product._id %>"
-                 class="block text-center mt-2 py-2 bg-red-500 text-white font-semibold rounded-full hover:bg-red-700 transition">
+              <a href="/products/home/<%= product._id %>"
+                 class="block text-center w-full py-2 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition">
                 View Details
               </a>
+              <form action="/addtrip/<%= product._id %>" method="POST" class="mt-2">
+  <button type="submit" class="block text-center w-full py-2 bg-red-700 text-white font-semibold rounded-full hover:bg-red-800 transition">
+    <i class="fa-solid fa-plus mr-1"></i>Add to Trip
+  </button>
+</form>
             </div>
           </div>
         <% }) %>
