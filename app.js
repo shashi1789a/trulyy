@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const flash = require('flash');
 const db = require("./config/mongoose-connection");
+const passport = require("passport");
 // const morgan = require('morgan');
 // app.use(morgan('dev'));
 
@@ -13,6 +14,7 @@ const ownersRouter = require('./routers/ownersRouter');
 const usersRouter = require('./routers/usersRouter');
 const productsRouter = require('./routers/productsRouter');
 require('dotenv').config();
+require("./config/passport");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,15 +29,20 @@ app.use(
     })
 );
 
+app.use(passport.initialize());
+
+app.use(passport.session());
+
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views')); // Ensure this matches your project structure
+app.set('views', path.join(__dirname, 'views')); 
 
 app.use('/', indexRouter);
 app.use('/owners', ownersRouter);
 app.use('/products', productsRouter);
 app.use('/users', usersRouter);
+app.use("/auth", require("./routers/google.routes"));
 // app.use('/placedetails', usersRouter);
 
 // app.listen(3000, () => {

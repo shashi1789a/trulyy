@@ -1,12 +1,20 @@
 const Destination = require('../models/Destination');
 
+<<<<<<< HEAD
 
+=======
+// GET /destinations - Display all destinations
+>>>>>>> 0fd1302 (Update travel project)
 exports.getAllDestinations = async (req, res) => {
   try {
     const destinations = await Destination.find().sort({ createdAt: -1 });
     res.render('destinations', {
       destinations,
+<<<<<<< HEAD
       user: req.user 
+=======
+      user: req.user // Make sure to pass user (if logged in)
+>>>>>>> 0fd1302 (Update travel project)
     });
   } catch (error) {
     console.error('Error fetching destinations:', error);
@@ -14,11 +22,19 @@ exports.getAllDestinations = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 
 exports.addRating = async (req, res) => {
   const destinationId = req.params.id;
   const { score, comment } = req.body;
   const userId = req.user._id; 
+=======
+// POST /destinations/:id/rate - Add or update rating
+exports.addRating = async (req, res) => {
+  const destinationId = req.params.id;
+  const { score, comment } = req.body;
+  const userId = req.user._id; // Must be available from middleware
+>>>>>>> 0fd1302 (Update travel project)
 
   try {
     const destination = await Destination.findById(destinationId);

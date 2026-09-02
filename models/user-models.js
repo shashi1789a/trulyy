@@ -5,12 +5,30 @@ const userSchema = mongoose.Schema({
     type: String,
     minLength: 5,
     trim: true,
+<<<<<<< HEAD
   
   },
   phnumber: {
     type: Number,
     required: true
   },
+=======
+    // required: true
+  },
+  phnumber: {
+    type: Number,
+    
+  },
+  googleId: {
+    type: String,
+    default: null
+},
+
+photo: {
+    type: String,
+    default: ""
+},
+>>>>>>> 0fd1302 (Update travel project)
   email: {
     type: String,
     required: true

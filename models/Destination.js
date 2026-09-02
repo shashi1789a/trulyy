@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 const ratingSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
+<<<<<<< HEAD
     ref: 'User', 
+=======
+    ref: 'User', // Assuming you have a User model
+>>>>>>> 0fd1302 (Update travel project)
     required: true
   },
   score: {

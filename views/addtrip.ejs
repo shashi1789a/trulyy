@@ -7,7 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100 font-sans text-gray-800">
+<<<<<<< HEAD
    <%- include('./partials/header') %>
+=======
+    <%- include('./partials/headeroth') %>
+>>>>>>> 0fd1302 (Update travel project)
 
     <div class="max-w-6xl mx-auto px-4 py-10">
       <h2 class="text-3xl font-bold mb-8 text-center">Your Trips</h2>
@@ -37,9 +41,15 @@
 
               <div class="flex-1">
                 <h3 class="text-xl font-semibold"><%= product.name %></h3>
+<<<<<<< HEAD
                 <!-- <p class="text-gray-600 mt-1">
                   <%= product.description.length > 150 ? product.description.substring(0, 150) + "..." : product.description %>
                 </p> -->
+=======
+                <p class="text-gray-600 mt-1">
+                  <%= product.description.length > 150 ? product.description.substring(0, 150) + "..." : product.description %>
+                </p>
+>>>>>>> 0fd1302 (Update travel project)
                 <p class="mt-1 text-sm text-gray-500">
                   Category: <%= product.category.charAt(0).toUpperCase() + product.category.slice(1) %>
                 </p>
